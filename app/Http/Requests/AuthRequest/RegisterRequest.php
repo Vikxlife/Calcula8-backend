@@ -26,14 +26,26 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'firstName' => 'required',
-            'lastName'  => 'required',
+            'firstname' => 'required|string',
+            'lastname'  => 'required|string',
             'email'     => 'required|email|unique:users',
             'password'  => [
                 'required',
                 'confirmed',
                 Password::min(8)->mixedCase(),
             ],
+        ];
+    }
+
+
+    public function messages()
+    {
+        return [
+            'email.required' => 'An email address is required',
+            'email.email' => 'The email address must be valid',
+            'password.required' => 'A password is required',
+            'password.min' => 'The password must be at least 6 characters',
+            // 'password.mixedCase' => 'The password must contain mixed cases'
         ];
     }
 }
