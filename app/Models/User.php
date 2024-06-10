@@ -42,7 +42,7 @@ class User extends EloquentModel implements AuthenticatableContract
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        // 'remember_token',
     ];
 
     /**

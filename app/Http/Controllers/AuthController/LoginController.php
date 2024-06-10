@@ -5,6 +5,8 @@ namespace App\Http\Controllers\AuthController;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\AuthRequest\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class LoginController extends BaseController
 {
@@ -19,6 +21,15 @@ class LoginController extends BaseController
         }
 
         $user = Auth::user();
+
+        // if (!$user->is_verified == 1) {
+            // $otp = $this->generateOTP($user);
+        //     Mail::to($request->email)->send(new VerifyAccount($otp['token']));
+
+        //     return response([
+        //         'user' => $user,
+        //     ]);
+        // }
         
         if (!$user) {
             return response(['error' => 'Auth::user() returned null'], 500);
@@ -66,5 +77,31 @@ class LoginController extends BaseController
         //     'token' => $token,
         // ]);
 
+    }
+
+
+    public function logout(Request $request)
+    {
+        $token = $request->bearerToken();
+
+        if (!$token) {
+            return response()->json(['message' => 'No token provided'], 401);
+        }
+
+        $tokenId = explode('|', $token, 2)[0];
+
+        $accessToken = PersonalAccessToken::find($tokenId);
+
+        if ($accessToken) {
+            $accessToken->delete();
+            return response()->json([
+                'message' => 'Logged out successfully'
+            ]);
+
+        } else {
+            return response()->json([
+                'message' => 'Token not found'], 
+                404);
+        }
     }
 }
