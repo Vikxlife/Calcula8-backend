@@ -13,14 +13,16 @@ class VerifyAccount extends Mailable
 {
     use Queueable, SerializesModels;
 
+        private int $token;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($token)
     {
-        //
+        $this->token = $token;
     }
 
     /**
@@ -40,12 +42,16 @@ class VerifyAccount extends Mailable
      *
      * @return \Illuminate\Mail\Mailables\Content
      */
-    public function content()
+    public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            markdown: 'Email.verifyAccount',
+            with: [
+                'token' => $this->token
+            ]
         );
     }
+
 
     /**
      * Get the attachments for the message.

@@ -59,4 +59,9 @@ class User extends EloquentModel implements AuthenticatableContract
     {
         return $this->hasOne(PasswordReset::class);
     }
+
+    public function UserVerify(): HasOne 
+    {
+        return $this->hasOne(UserVerify::class);
+    }
 }

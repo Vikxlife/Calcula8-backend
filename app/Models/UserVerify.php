@@ -9,7 +9,7 @@ class UserVerify extends EloquentModel
 {
     use HasFactory;
 
-    // protected $table = 'users_verify';
+    protected $table = 'users_verify';
 
     /**
      * Write code on Method
@@ -18,7 +18,7 @@ class UserVerify extends EloquentModel
      */
 
      protected $connection = 'mongodb';
-     protected $collection = 'users';
+     protected $collection = 'users_verify';
  
     protected $fillable = [
         'user_id',

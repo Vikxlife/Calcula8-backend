@@ -4,7 +4,9 @@ namespace App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\AuthRequest\RegisterRequest;
+use App\Mail\VerifyAccount;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends BaseController
@@ -20,10 +22,16 @@ class RegisterController extends BaseController
         }
 
         $data = $request->post();
-        $createData = $this->create($data);
+        
+        $createUser = $this->create($data);
+
+        $otp = $this->generateOTP($createUser);
+
+        Mail::to($data['email'])->send(new VerifyAccount($otp['token']));
+
 
         return response()->json([
-            'data' => $createData,
+            'data' => $createUser,
         ],200);
 
     }

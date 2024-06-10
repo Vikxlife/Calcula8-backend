@@ -20,6 +20,7 @@ class BaseController extends Controller
             'expiresAt'  => now()->addMinutes(5),
             'token'      => $token,
         ]);
+        
         return [
             'token'  => $token,
             'verify' => $verify,
