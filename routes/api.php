@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController\LoginController;
+use App\Http\Controllers\AuthController\PasswordResetController;
 use App\Http\Controllers\AuthController\RegisterController;
 use App\Http\Controllers\AuthController\VerifyEmailController;
 use Illuminate\Http\Request;
@@ -26,3 +27,6 @@ Route::post('/RegisterUser', [RegisterController::class, 'RegisterUser'])->name(
 Route::post('/LoginUser', [LoginController::class, 'LoginUser'])->name('LoginUser'); 
 Route::middleware('auth:sanctum')->post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/verifyAccount', [VerifyEmailController::class, 'verifyAccount'])->name('verifyAccount');
+Route::post('/passwordReset', [PasswordResetController::class, 'passwordReset'])->name('passwordReset');
+
+

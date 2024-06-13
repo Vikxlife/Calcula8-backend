@@ -26,4 +26,14 @@ class BaseController extends Controller
             'verify' => $verify,
         ];
     }
+
+
+    protected function success($data)
+    {
+        return response(
+            [
+                'data'   => $data,
+                'status' => 'Successful',
+            ]);
+    }
 }
