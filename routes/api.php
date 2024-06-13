@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController\LoginController;
 use App\Http\Controllers\AuthController\RegisterController;
+use App\Http\Controllers\AuthController\VerifyEmailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/RegisterUser', [RegisterController::class, 'RegisterUser'])->name('RegisterUser'); 
 Route::post('/LoginUser', [LoginController::class, 'LoginUser'])->name('LoginUser'); 
 Route::middleware('auth:sanctum')->post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/verifyAccount', [VerifyEmailController::class, 'verifyAccount'])->name('verifyAccount');

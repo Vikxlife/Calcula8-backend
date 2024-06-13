@@ -13,14 +13,16 @@ class PasswordResetLink extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    private int $token;
+
+/**
+ * Create a new message instance.
+ *
+ * @return void
+*/
+    public function __construct($token)
     {
-        //
+        $this->token = $token;
     }
 
     /**
@@ -43,7 +45,10 @@ class PasswordResetLink extends Mailable
     public function content()
     {
         return new Content(
-            view: 'view.name',
+            markdown: 'Email.passwordResetLink',
+            with: [
+                'token' => $this->token
+            ]
         );
     }
 

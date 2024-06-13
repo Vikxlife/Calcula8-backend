@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/password_reset',
+    function(){
+        return view('email.PasswordReset');
+    }
+)->name('password.reset');

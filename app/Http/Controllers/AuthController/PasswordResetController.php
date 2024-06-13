@@ -4,6 +4,8 @@ namespace App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\VerifyResetPasswordOtp;
+use App\Mail\PasswordResetLink;
 use App\Models\PasswordReset;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -30,7 +32,26 @@ class PasswordResetController extends BaseController
             'token' => $token,
         ]);
 
-        // Mail::to($request->email)->send(new PasswordResetLink($token));
+        Mail::to($request->email)->send(new PasswordResetLink($token));
         return $this->success($user);
     }
+
+        public function verifyPassWordOtp(VerifyResetPasswordOtp $request)
+        {
+            $data = $request->validated();
+
+            if ($verify = PasswordReset::where(['email' => $data['email'], 'token' => $data['token']])->first()) {
+
+                return response([
+                    'user'      => $verify->email,
+                ]);
+
+            }
+            
+            return response ([
+                'status' => 'Error',
+                'message' => 'Invalid Token',
+            ]);
+        }
+
 }
