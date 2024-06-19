@@ -32,7 +32,6 @@ Route::get('/password/reset/success', function () {
 
 
 Route::get('/password_reset/{token}', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
-
 Route::post('/password/reset', [PasswordResetController::class, 'reset'])->name('password.update');
 
 
