@@ -38,8 +38,13 @@ return [
     'connections' => [
 
         'mongodb' => [
-            'driver'   => 'mongodb',
-            'host'     => env('DB_HOST', '127.0.0.1'),
+            'driver'    => 'mongodb',
+            'dsn'       => 'mongodb+srv://fridaynkeneabasi:4f51g9R4gE3lKch5@calcul8.sgqsid5.mongodb.net/',
+            'host'      => ['ac-g3iwbbu-shard-00-00.sgqsid5.mongodb.net:27017',
+                            'ac-g3iwbbu-shard-00-02.sgqsid5.mongodb.net:27017',
+                            'ac-g3iwbbu-shard-00-01.sgqsid5.mongodb.net:27017'
+                            ],
+            // 'host'     => env('DB_HOST', '127.0.0.1'),
             'port'     => env('DB_PORT', 27017),
             'database' => env('DB_DATABASE'),
             'username' => env('DB_USERNAME'),

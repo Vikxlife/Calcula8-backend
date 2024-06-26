@@ -64,4 +64,9 @@ class User extends EloquentModel implements AuthenticatableContract
     {
         return $this->hasOne(UserVerify::class);
     }
+
+    public function UserProfile(): HasOne 
+    {
+        return $this->hasOne(UserProfile::class);
+    }
 }

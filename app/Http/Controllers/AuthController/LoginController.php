@@ -100,7 +100,7 @@ class LoginController extends BaseController
 
         } else {
             return response()->json([
-                'message' => 'Token not found'], 
+                'message' => 'User not found'], 
                 404);
         }
     }

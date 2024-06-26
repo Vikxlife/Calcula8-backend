@@ -21,10 +21,12 @@ class UserVerify extends EloquentModel
      protected $collection = 'users_verify';
  
     protected $fillable = [
-        'user_id',
-        'user_email',
-        'token',
-        'expiresAt',
+        'firstname',
+        'lastname',
+        'gender',
+        'age',
+        'state',
+        'lga'
     ];
 
     protected $casts = [

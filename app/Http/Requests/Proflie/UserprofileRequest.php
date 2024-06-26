@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Proflie;
+namespace App\Http\Requests\AuthRequest;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserprofileRequest extends FormRequest
+
+class RegisterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,7 @@ class UserprofileRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,26 @@ class UserprofileRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'firstname' => 'string',
+            'lastname'  => 'string',
+            'school'    => 'string',
+            'gender'    => 'string',
+            'age'       => 'string',
+            'state'     => 'string',
+            'lga'       => 'string',
+            'image'     => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ];
     }
+
+
+    // public function messages()
+    // {
+    //     return [
+    //         'email.required' => 'An email address is required',
+    //         'email.email' => 'The email address must be valid',
+    //         'password.required' => 'A password is required',
+    //         'password.min' => 'The password must be at least 6 characters',
+    //         'password.mixedCase' => 'The password must contain mixed cases'
+    //     ];
+    // }
 }
