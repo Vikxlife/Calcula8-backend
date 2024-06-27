@@ -16,7 +16,7 @@ class RegisterController extends BaseController
 
         $data = Validator::make($request->all(), $request->rules());
 
-        dd($data);
+        // dd($data);
 
         if($data->fails()){
             return response()->json([
@@ -28,7 +28,7 @@ class RegisterController extends BaseController
         
         $createUser = $this->create($data);
 
-        $otp = $this->generateOTP($createUser);
+        // $otp = $this->generateOTP($createUser);
 
         // Mail::to($data['email'])->send(new VerifyAccount($otp['token']));
 
