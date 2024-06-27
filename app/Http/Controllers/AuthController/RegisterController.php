@@ -13,9 +13,10 @@ class RegisterController extends BaseController
 {
     public function RegisterUser(RegisterRequest $request){
 
-        dd('asdfasf');
 
         $data = Validator::make($request->all(), $request->rules());
+
+        dd($data);
 
         if($data->fails()){
             return response()->json([
