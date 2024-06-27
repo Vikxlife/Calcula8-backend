@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->boolean('is_verfied')->default(false);
+            $table->timestamp('email_verified_at')->default('')->nullable();
+            $table->boolean('is_verfied')->default('')->nullable();
             $table->string('password');
             $table->timestamps();
         });
