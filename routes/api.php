@@ -29,4 +29,6 @@ Route::middleware('auth:sanctum')->post('/logout', [LoginController::class, 'log
 Route::post('/verifyAccount', [VerifyEmailController::class, 'verifyAccount'])->name('verifyAccount');
 Route::post('/passwordReset', [PasswordResetController::class, 'passwordReset'])->name('passwordReset');
 
+Route::get('/getusers', [RegisterController::class, 'getusers'])->name('getusers');
+
 

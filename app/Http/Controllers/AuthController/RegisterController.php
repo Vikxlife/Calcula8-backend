@@ -28,7 +28,7 @@ class RegisterController extends BaseController
         
         $createUser = $this->create($data);
 
-        // $otp = $this->generateOTP($createUser);
+        $otp = $this->generateOTP($createUser);
 
         // Mail::to($data['email'])->send(new VerifyAccount($otp['token']));
 
@@ -47,6 +47,16 @@ class RegisterController extends BaseController
             'email'     => $data['email'],
             'password'  => bcrypt($data['password']),
             // 'email_verified_at' => null,
+        ]);
+    }
+
+
+
+    public function getusers(){
+        $data = User::all();
+
+        return response()->json([
+            $data
         ]);
     }
 }
