@@ -13,6 +13,8 @@ class RegisterController extends BaseController
 {
     public function RegisterUser(RegisterRequest $request){
 
+        dd('asdfasf');
+
         $data = Validator::make($request->all(), $request->rules());
 
         if($data->fails()){
@@ -43,7 +45,7 @@ class RegisterController extends BaseController
             'name'      => $data['firstname'],
             'email'     => $data['email'],
             'password'  => bcrypt($data['password']),
-            'email_verified_at' => null,
+            // 'email_verified_at' => null,
         ]);
     }
 }
