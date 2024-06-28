@@ -25,9 +25,6 @@ class LoginController extends BaseController
 
         $user = Auth::user();
 
-        dd($user);
-
-
         // if (!$user->is_verified == 1) {
             // $otp = $this->generateOTP($user);
         //     Mail::to($request->email)->send(new VerifyAccount($otp['token']));
@@ -41,8 +38,16 @@ class LoginController extends BaseController
             return response(['error' => 'Auth::user() returned null'], 500);
         }
 
-        /** @var \App\Models\User $user **/
-        $token = $user->createToken('main')->plainTextToken;
+        try {
+            /** @var \App\Models\User $user **/
+            $token = $user->createToken('main')->plainTextToken;
+        } catch (\Exception $e) {
+            // Log the exception message
+            \Log::error('Token creation failed: ' . $e->getMessage());
+            return response(['error' => 'Token creation failed'], 500);
+        }
+        // /** @var \App\Models\User $user **/
+        // $token = $user->createToken('main')->plainTextToken;
 
     
         return response([
