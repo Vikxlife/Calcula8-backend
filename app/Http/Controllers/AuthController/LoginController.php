@@ -25,17 +25,17 @@ class LoginController extends BaseController
         return response(['error' => 'User not authenticated'], 401);
     }
 
-    try {
-                /** @var \App\Models\User $user **/
-        $token = $user->createToken('main')->plainTextToken;
-    } catch (\Exception $e) {
-        Log::error('Token generation failed: ' . $e->getMessage());
-        return response(['error' => 'Token generation failed'], 500);
-    }
+    // try {
+    //             /** @var \App\Models\User $user **/
+    //     $token = $user->createToken('main')->plainTextToken;
+    // } catch (\Exception $e) {
+    //     Log::error('Token generation failed: ' . $e->getMessage());
+    //     return response(['error' => 'Token generation failed'], 500);
+    // }
 
     return response([
         'user' => $user,
-        'token' => $token,
+        // 'token' => $token,
     ]);
 }
 
