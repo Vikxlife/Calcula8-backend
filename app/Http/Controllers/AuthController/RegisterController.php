@@ -30,7 +30,7 @@ class RegisterController extends BaseController
 
         $otp = $this->generateOTP($createUser);
 
-        Mail::to($data['email'])->send(new VerifyAccount($otp['token']));
+        // Mail::to($data['email'])->send(new VerifyAccount($otp['token']));
 
 
         return response()->json([
