@@ -14,7 +14,7 @@ class RegisterController extends BaseController
     public function RegisterUser(RegisterRequest $request){
 
 
-        $data = Validator::make($request->all(), $request->rules());
+        $data = Validator::make($request->all(), $request->rules()); 
 
         // dd($data);
 
