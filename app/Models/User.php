@@ -27,8 +27,7 @@ class User extends EloquentModel implements AuthenticatableContract
     protected $collection = 'users';
 
     protected $fillable = [
-        'firstname',
-        'lastname',
+        'name',
         'email',
         'password',
         'email_verified_at',
