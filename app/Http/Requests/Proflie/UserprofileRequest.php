@@ -34,6 +34,7 @@ class UserProfileRequest extends FormRequest
             'state'          => 'string',
             'lga'            => 'string',
             'user_image'     => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+        
         ];
     }
 
