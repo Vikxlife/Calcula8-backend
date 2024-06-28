@@ -5,51 +5,79 @@ namespace App\Http\Controllers\AuthController;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\AuthRequest\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
 use Laravel\Sanctum\PersonalAccessToken;
 
 class LoginController extends BaseController
 {
-    public function LoginUser(LoginRequest $request){
+    public function LoginUser(LoginRequest $request)
+{
+    $credentials = $request->only(['email', 'password']);
 
-        $credentials = $request->only(['email', 'password']);
+    if (!Auth::attempt($credentials)) {
+        return response(['error' => 'Invalid credentials'], 422);
+    }
+
+    $user = Auth::user();
+
+    if (!$user) {
+        return response(['error' => 'User not authenticated'], 401);
+    }
+
+    try {
+        $token = $user->createToken('main')->plainTextToken;
+    } catch (\Exception $e) {
+        Log::error('Token generation failed: ' . $e->getMessage());
+        return response(['error' => 'Token generation failed'], 500);
+    }
+
+    return response([
+        'user' => $user,
+        'token' => $token,
+    ]);
+}
+
+    // public function LoginUser(LoginRequest $request){
+
+    //     $credentials = $request->only(['email', 'password']);
 
         
 
-        if (!Auth::attempt($credentials)) {
-            return response([
-                'error' => 'Invalid credentials',
-            ], 422);
-        }
+    //     if (!Auth::attempt($credentials)) {
+    //         return response([
+    //             'error' => 'Invalid credentials',
+    //         ], 422);
+    //     }
 
 
-        $user = Auth::user();
+    //     $user = Auth::user();
 
-        // if (!$user->is_verified == 1) {
-            // $otp = $this->generateOTP($user);
-        //     Mail::to($request->email)->send(new VerifyAccount($otp['token']));
+    //     // if (!$user->is_verified == 1) {
+    //         // $otp = $this->generateOTP($user);
+    //     //     Mail::to($request->email)->send(new VerifyAccount($otp['token']));
 
-        //     return response([
-        //         'user' => $user,
-        //     ]);
-        // }
+    //     //     return response([
+    //     //         'user' => $user,
+    //     //     ]);
+    //     // }
         
-        if (!$user) {
-            return response(['error' => 'Auth::user() returned null'], 500);
-        }
+    //     if (!$user) {
+    //         return response(['error' => 'Auth::user() returned null'], 500);
+    //     }
 
      
-        /** @var \App\Models\User $user **/
-        $token = $user->createToken('main')->plainTextToken;
+    //     /** @var \App\Models\User $user **/
+    //     $token = $user->createToken('main')->plainTextToken;
 
         
     
-        return response([
-            'user'  => $user,
-            'token' => $token,
-        ]);
+    //     return response([
+    //         'user'  => $user,
+    //         'token' => $token,
+    //     ]);
 
-    }
+    // }
 
 
     public function logout(Request $request)
