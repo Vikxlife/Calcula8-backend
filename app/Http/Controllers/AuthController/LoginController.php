@@ -14,11 +14,15 @@ class LoginController extends BaseController
 
         $credentials = $request->only(['email', 'password']);
 
+        
+
         if (!Auth::attempt($credentials)) {
             return response([
                 'error' => 'Invalid credentials',
             ], 422);
         }
+
+        dd($credentials);
 
         $user = Auth::user();
 
