@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController\LoginController;
 use App\Http\Controllers\AuthController\PasswordResetController;
 use App\Http\Controllers\AuthController\RegisterController;
 use App\Http\Controllers\AuthController\VerifyEmailController;
+use App\Http\Controllers\UserProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,9 @@ Route::post('/LoginUser', [LoginController::class, 'LoginUser'])->name('LoginUse
 Route::middleware('auth:sanctum')->post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/verifyAccount', [VerifyEmailController::class, 'verifyAccount'])->name('verifyAccount');
 Route::post('/passwordReset', [PasswordResetController::class, 'passwordReset'])->name('passwordReset');
+Route::middleware('auth-sanctum')->post('/CreateUserProfile', [UserProfileController::class, 'CreateUserProfile'])->name('CreateUserProfile');
+
+
 
 Route::get('/getusers', [RegisterController::class, 'getusers'])->name('getusers');
 

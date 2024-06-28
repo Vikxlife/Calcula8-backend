@@ -11,7 +11,7 @@ use Jenssegers\Mongodb\Eloquent\Model as EloquentModel;
 
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Jenssegers\Mongodb\Relations\HasOne;
+use Jenssegers\Mongodb\Relations\HasOne; 
 
 class User extends EloquentModel implements AuthenticatableContract
 {

@@ -22,9 +22,14 @@ class UserProfile extends EloquentModel
 
      protected $fillable = [
         'user_id',
-        'user_email',
-        'token',
-        'expiresAt',
+        'firstname',
+        'lastname',
+        'school',
+        'gender',
+        'age',
+        'state',
+        'lga',
+        'user_image',
     ];
 
     // protected $casts = [

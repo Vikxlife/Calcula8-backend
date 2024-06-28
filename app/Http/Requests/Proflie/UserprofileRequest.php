@@ -25,14 +25,15 @@ class UserProfileRequest extends FormRequest
     public function rules()
     {
         return [ 
-            'firstname' => 'string',
-            'lastname'  => 'string',
-            'school'    => 'string',
-            'gender'    => 'string',
-            'age'       => 'string',
-            'state'     => 'string',
-            'lga'       => 'string',
-            'image'     => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'user_id'        => 'string',
+            'firstname'      => 'string',
+            'lastname'       => 'string',
+            'school'         => 'string',
+            'gender'         => 'string',
+            'age'            => 'string',
+            'state'          => 'string',
+            'lga'            => 'string',
+            'user_image'     => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ];
     }
 
