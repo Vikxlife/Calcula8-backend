@@ -22,9 +22,11 @@ class LoginController extends BaseController
             ], 422);
         }
 
-        dd($credentials);
 
         $user = Auth::user();
+
+        dd($credentials);
+
 
         // if (!$user->is_verified == 1) {
             // $otp = $this->generateOTP($user);
