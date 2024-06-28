@@ -12,32 +12,35 @@ use Laravel\Sanctum\PersonalAccessToken;
 class LoginController extends BaseController
 {
     public function LoginUser(LoginRequest $request)
-{
-    $credentials = $request->only(['email', 'password']);
-
-    if (!Auth::attempt($credentials)) {
-        return response(['error' => 'Invalid credentials'], 422);
+    {
+        $credentials = $request->only(['email', 'password']);
+    
+        if (!Auth::attempt($credentials)) {
+            return response(['error' => 'Invalid credentials'], 422);
+        }
+    
+        $user = Auth::user();
+    
+        if (!$user) {
+            return response(['error' => 'User not authenticated'], 401);
+        }
+    
+        try {
+            /** @var \App\Models\User $user **/
+            Log::info('User authenticated: ' . $user->id);
+            $token = $user->createToken('main')->plainTextToken;
+            Log::info('Token generated successfully: ' . $token);
+        } catch (\Exception $e) {
+            Log::error('Token generation failed: ' . $e->getMessage());
+            return response(['error' => 'Token generation failed: ' . $e->getMessage()], 500);
+        }
+    
+        return response([
+            'user' => $user,
+            'token' => $token,
+        ]);
     }
-
-    $user = Auth::user();
-
-    if (!$user) {
-        return response(['error' => 'User not authenticated'], 401);
-    }
-
-    // try {
-    //             /** @var \App\Models\User $user **/
-    //     $token = $user->createToken('main')->plainTextToken;
-    // } catch (\Exception $e) {
-    //     Log::error('Token generation failed: ' . $e->getMessage());
-    //     return response(['error' => 'Token generation failed'], 500);
-    // }
-
-    return response([
-        'user' => $user,
-        // 'token' => $token,
-    ]);
-}
+    
 
     // public function LoginUser(LoginRequest $request){
 
