@@ -65,7 +65,7 @@ class LoginController extends BaseController
     }
 
     // For debugging, check if $user is retrieved correctly
-    // Log::info('Authenticated User: ' . $user);
+    Log::info('Authenticated User: ' . $user);
 
     return response(['user' => $user]);
 }
