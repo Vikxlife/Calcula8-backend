@@ -33,6 +33,6 @@ Route::middleware('auth-sanctum')->post('/CreateUserProfile', [UserProfileContro
 
 
 
-Route::middleware('auth:sanctum')->get('/getusers', [RegisterController::class, 'getusers'])->name('getusers');
+Route::get('/getusers', [RegisterController::class, 'getusers'])->name('getusers');
 
 
