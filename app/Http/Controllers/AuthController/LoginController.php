@@ -25,7 +25,7 @@ class LoginController extends BaseController
 
         $user = Auth::user();
 
-        dd($credentials);
+        dd($user);
 
 
         // if (!$user->is_verified == 1) {
