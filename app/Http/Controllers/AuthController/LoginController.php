@@ -39,8 +39,9 @@ class LoginController extends BaseController
         }
 
      
-        /** @var \App\Models\User $user **/
+        // /** @var \App\Models\User $user **/
         $token = $user->createToken('main')->plainTextToken;
+        dd($token);
 
     
         return response([
