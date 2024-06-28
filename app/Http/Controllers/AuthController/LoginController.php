@@ -46,14 +46,14 @@ class LoginController extends BaseController
         //     \Log::error('Token creation failed: ' . $e->getMessage());
         //     return response(['error' => 'Token creation failed'], 500);
         // }
-        
-        /** @var \App\Models\User $user **/
-        $token = $user->createToken('main')->plainTextToken;
+
+        // /** @var \App\Models\User $user **/
+        // $token = $user->createToken('main')->plainTextToken;
 
     
         return response([
             'user'  => $user,
-            'token' => $token,
+            // 'token' => $token,
         ]);
 
     }
