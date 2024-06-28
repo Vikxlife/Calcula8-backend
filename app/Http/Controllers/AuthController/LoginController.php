@@ -26,6 +26,7 @@ class LoginController extends BaseController
     }
 
     try {
+                /** @var \App\Models\User $user **/
         $token = $user->createToken('main')->plainTextToken;
     } catch (\Exception $e) {
         Log::error('Token generation failed: ' . $e->getMessage());
