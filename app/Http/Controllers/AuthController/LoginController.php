@@ -44,39 +44,6 @@ class LoginController extends BaseController
             'token' => $token,
         ]);
 
-
-
-
-
-
-
-
-        // if (!Auth::attempt($credentials, $request->get('remember'))) {
-        //     return response([
-        //         'error' => 'Invalid credentials',
-        //     ], 422);
-
-        // }
-
-        // $user = Auth::user();
-
-        // if (!$user->is_verified == 1) {
-        //     $otp = $this->generateOTP($user);
-        //     Mail::to($request->email)->send(new VerifyAccount($otp['token']));
-
-        //     return response([
-        //         'user' => $user,
-        //     ]);
-        // }
-
-        // /** @var \App\Models\User $user * */
-        // $token = $user->createToken('main')->plainTextToken;
-
-        // return response([
-        //     'user'  => $user,
-        //     'token' => $token,
-        // ]);
-
     }
 
 
