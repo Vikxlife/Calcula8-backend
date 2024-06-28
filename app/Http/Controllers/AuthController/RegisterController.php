@@ -43,7 +43,7 @@ class RegisterController extends BaseController
     public function create(array $data)
     {
         return User::create([
-            'name'      => $data['name'],
+            'name'      => $data['username'],
             'email'     => $data['email'],
             'password'  => bcrypt($data['password']),
             // 'email_verified_at' => null,
