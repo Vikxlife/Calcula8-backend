@@ -18,7 +18,7 @@ class UserProfile extends EloquentModel
      */
 
      protected $connection = 'mongodb';
-     protected $collection = 'users_verify';
+     protected $collection = 'users_profile';
 
      protected $fillable = [
         'user_id',
