@@ -30,7 +30,7 @@ class UserProfileController extends BaseController
 
             $userId = User::find($request->user_id);
 
-            dd($request->user_image);
+            dd($fileName);
 
             $validatedData = $request->post();
             $createprofile = $this->create($validatedData, $fileName, $userId);
