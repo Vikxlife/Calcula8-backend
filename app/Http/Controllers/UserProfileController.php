@@ -45,7 +45,7 @@ class UserProfileController extends BaseController
     }
 
 
-    public function create(array $validatedData, $filename, $userId)
+    public function create(array $validatedData, $fileName, $userId)
     {
         if (!$userId) 
             {
@@ -60,7 +60,7 @@ class UserProfileController extends BaseController
                 'age'               => $validatedData['age'],
                 'state'             => $validatedData['state'],
                 'lga'               => $validatedData['lga'],
-                'user_image'        => $filename,
+                'user_image'        => $fileName,
             ]);
 
             $userId->UserProfile()->save($userprofile);
