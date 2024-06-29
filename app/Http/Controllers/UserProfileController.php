@@ -20,6 +20,7 @@ class UserProfileController extends BaseController
         $user = User::find($validatedData['user_id'])->first();
 
         if ($user->_id||$user->id = $validatedData['user_id']) {
+            $fileName = null;
 
             if($request->hasFile('user_image')){
                 $fileName = time() . '.' . $request->user_image->extension();
