@@ -75,8 +75,12 @@ class UserProfileController extends BaseController
     public function getuserprofile(){
         $data = UserProfile::all();
 
+
+
         return response()->json([
-            $data
+            $data,
+            "image" => asset('storage/images/' . $data->user_image),
+
         ]);
     }
 }
