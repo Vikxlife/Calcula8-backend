@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://calcul88-85d010764e99.herokuapp.com/'),
+    'url' => env('APP_URL', 'http://localhost'),
 
     'asset_url' => env('ASSET_URL'),
 
