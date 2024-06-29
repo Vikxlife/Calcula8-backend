@@ -35,5 +35,6 @@ Route::post('/CreateUserProfile', [UserProfileController::class, 'CreateUserProf
 
 
 Route::get('/getusers', [RegisterController::class, 'getusers'])->name('getusers');
+Route::get('/getuserprofile', [UserProfileController::class, 'getuserprofile'])->name('getuserprofile');
 
 

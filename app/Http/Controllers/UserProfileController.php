@@ -69,4 +69,12 @@ class UserProfileController extends BaseController
             $userprofile,
         ]);
     }
+
+    public function getuserprofile(){
+        $data = UserProfile::all();
+
+        return response()->json([
+            $data
+        ]);
+    }
 }
