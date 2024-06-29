@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AuthRequest\UserProfileRequest;
+use App\Http\Requests\UserProfile\UserProfileRequest;
 use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
