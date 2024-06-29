@@ -31,7 +31,7 @@ class UserProfileController extends BaseController
 
 
             $validatedData = $request->post();
-            $createprofile = $this->create($validatedData, $fileName, $userId);
+            $createprofile = $this->updateOrCreate($validatedData, $fileName, $userId);
 
             return response()->json([
                 'user_profile' => $createprofile,
@@ -52,7 +52,7 @@ class UserProfileController extends BaseController
                 return response()->json(['error' => 'user not found'], 404);
             }
 
-        $userprofile =  UserProfile::create([
+        $userprofile =  UserProfile::updateOrCreate([
                 'firstname'         => $validatedData['firstname'],
                 'lastname'          => $validatedData['lastname'],
                 'school'            => $validatedData['school'],
