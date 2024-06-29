@@ -23,17 +23,17 @@ class UserProfileController extends BaseController
             $fileName = null;
 
             if($request->hasFile('user_image')){
-                dd($request->user_image);
-                
+
                 $fileName = time() . '.' . $request->user_image->extension();
                 $request->user_image->storeAs('public/images', $fileName);
             }
 
             $userId = User::find($request->user_id);
 
+            dd($request->user_image);
 
             $validatedData = $request->post();
-            $createprofile = $this->updateOrCreate($validatedData, $fileName, $userId);
+            $createprofile = $this->create($validatedData, $fileName, $userId);
 
             return response()->json([
                 'user_profile' => $createprofile,
@@ -54,7 +54,7 @@ class UserProfileController extends BaseController
                 return response()->json(['error' => 'user not found'], 404);
             }
 
-        $userprofile =  UserProfile::updateOrCreate([
+        $userprofile =  UserProfile::create([
                 'firstname'         => $validatedData['firstname'],
                 'lastname'          => $validatedData['lastname'],
                 'school'            => $validatedData['school'],
