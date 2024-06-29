@@ -18,7 +18,7 @@ class UserProfileController extends BaseController
 
         $user = Auth::user();
 
-        if ($user->_id = $validatedData['user_id']) {
+        if ($user->_id||$user->id = $validatedData['user_id']) {
 
             if($request->hasFile('user_image')){
                 $fileName = time() . '.' . $request->user_image->extension();
