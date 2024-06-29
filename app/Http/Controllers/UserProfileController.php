@@ -34,7 +34,6 @@ class UserProfileController extends BaseController
             $validatedData = $request->post();
             $createprofile = $this->create($validatedData, $fileName, $userId);
 
-            dd($createprofile);
 
             return response()->json([
                 'user_profile' => $createprofile,
