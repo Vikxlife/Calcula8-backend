@@ -16,7 +16,8 @@ class UserProfileController extends BaseController
         
         $validatedData = $data->validated();
 
-        $user = Auth::user();
+        // $user = Auth::user();
+        $user = User::find($validatedData['user_id'])->first();
 
         if ($user->_id||$user->id = $validatedData['user_id']) {
 
