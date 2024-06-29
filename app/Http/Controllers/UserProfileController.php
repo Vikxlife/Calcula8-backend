@@ -23,6 +23,8 @@ class UserProfileController extends BaseController
             $fileName = null;
 
             if($request->hasFile('user_image')){
+                dd($request->user_image);
+                
                 $fileName = time() . '.' . $request->user_image->extension();
                 $request->user_image->storeAs('public/images', $fileName);
             }
