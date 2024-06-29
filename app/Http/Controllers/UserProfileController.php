@@ -24,7 +24,7 @@ class UserProfileController extends BaseController
 
             if($request->hasFile('user_image')){
                 $fileName = time() . '.' . $request->user_image->extension();
-                $request->image->storeAs('public/images', $fileName);
+                $request->user_image->storeAs('public/images', $fileName);
             }
 
             $userId = User::find($request->user_id);
