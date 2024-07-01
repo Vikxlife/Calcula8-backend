@@ -95,17 +95,7 @@ class UserProfileController extends BaseController
 
     public function updateuserprofile(UserProfileRequest $request, $id)
     {   
-        try {
-            // Validate if $id is a valid MongoDB ObjectId
-            if (!preg_match('/^[0-9a-fA-F]{24}$/', $id)) {
-                throw new \Exception('Invalid ID format');
-            }
-    
-            // Convert the string ID to a MongoDB ObjectId
-            $_id = new ObjectId($id);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 400);
-        }
+        dd($id);
 
         $data = Validator::make($request->all(), $request->rules());
         
