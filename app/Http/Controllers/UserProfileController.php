@@ -94,27 +94,31 @@ class UserProfileController extends BaseController
 
 
     public function updateuserprofile(UserProfileRequest $request, $id)
-    {
+    {   
+        try {
+            // Validate if $id is a valid MongoDB ObjectId
+            if (!preg_match('/^[0-9a-fA-F]{24}$/', $id)) {
+                throw new \Exception('Invalid ID format');
+            }
+    
+            // Convert the string ID to a MongoDB ObjectId
+            $_id = new ObjectId($id);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+
         $data = Validator::make($request->all(), $request->rules());
         
+        $validatedData = $data->validated();
 
             if ($data->fails()) {
                 return response()->json(['errors' => $data->errors()], 422);
             }
             
-            $validatedData = $data->validated();
 
-            // $user = Auth::user();
-            $profileId = UserProfile::find($validatedData['id'])->first();
+            $foundUserId = UserProfile::find($validatedData['user_id']);
 
-            $_id = UserProfile::find($validatedData[$id]);
-
-
-            // $foundUserId = UserProfile::find($_id);
-            // $profile = UserProfile::all();
-
-            dd($profileId);
-
+dd($foundUserId);
 
             if (!$foundUserId) {
                 return response()->json(['error' => 'Not found'], 404);
