@@ -76,18 +76,18 @@ class UserProfileController extends BaseController
         $data = UserProfile::all();
 
 
-        $formattedUserProfile = $data->map(function ($data) {
+        // $formattedUserProfile = $data->map(function ($data) {
 
-            return [
-                "image" => asset('storage/images/' . $data->user_image),
+        //     return [
+        //         "image" => asset('storage/images/' . $data->user_image),
                 
-            ];
-        });
+        //     ];
+        // });
 
 
         return response()->json([
             $data,
-            $formattedUserProfile
+            // $formattedUserProfile
         ]);
     }
 }
