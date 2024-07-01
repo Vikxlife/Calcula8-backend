@@ -43,19 +43,6 @@ class LoginController extends BaseController
         // /** @var \App\Models\User $user **/
         // $token = $user->createToken('main')->plainTextToken;
 
-        try {
-            Log::info('User authenticated: ' . $user->id);
-
-            /** @var \App\Models\User $user **/
-            $token = $user->createToken('main')->plainTextToken;
-            Log::info('Token generated successfully: ' . $token);
-        } catch (\Exception $e) {
-            Log::error('Token generation failed: ' . $e->getMessage());
-            Log::error('Stack trace: ' . $e->getTraceAsString());
-            return response(['error' => 'Token generation failed: ' . $e->getMessage()], 500);
-        }
-        
-
         
     
         return response([
