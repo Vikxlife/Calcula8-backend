@@ -93,11 +93,11 @@ class UserProfileController extends BaseController
     }
 
 
-    public function updateuserprofile(UserProfileRequest $request, $id)
+    public function updateuserprofile(UserProfileRequest $request, $_id)
     {
 
            // Convert the string ID to a MongoDB ObjectId
-           dd($id);
+           dd($_id);
         try {
             $_id = new ObjectId($id);
             } 
