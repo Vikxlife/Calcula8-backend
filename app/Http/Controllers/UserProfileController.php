@@ -98,7 +98,8 @@ class UserProfileController extends BaseController
 
     //   dd($request->all());
 
-        $profile = UserProfile::find($request->input('id'));
+        // $profile = UserProfile::find($request->input('id'));
+        $profile = UserProfile::find($id);
 
         dd($profile);
 
