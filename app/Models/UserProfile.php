@@ -36,6 +36,14 @@ class UserProfile extends EloquentModel
     //     'expiresAt' => 'datetime',
     // ];
 
+    protected $appends = [
+        'image_url'
+    ];
+
+    public function getImageUrlAttribute(){
+        return asset('storage/images/' . $this->user_image);
+    }
+
     /**
      * Write code on Method
      *
