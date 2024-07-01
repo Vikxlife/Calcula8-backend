@@ -102,9 +102,11 @@ class UserProfileController extends BaseController
                 return response()->json(['errors' => $data->errors()], 422);
             }
             $_id = $id;
-            $foundUserId = UserProfile::find($_id);
 
-            dd($foundUserId);
+            $foundUserId = UserProfile::find($_id);
+            $profile = UserProfile::all();
+
+            dd([$profile, $foundUserId]);
 
 
             if (!$foundUserId) {
