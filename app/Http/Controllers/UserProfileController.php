@@ -95,51 +95,64 @@ class UserProfileController extends BaseController
 
     public function updateuserprofile(UserProfileRequest $request, $id)
     {   
-        dd($request->$id);
 
-        $data = Validator::make($request->all(), $request->rules());
+        $validatedData = $request->validated();
+
+        // Find the user profile by ID
+        $profile = UserProfile::find($id);
+
+        dd($profile);
+
+        if (!$profile) {
+            return response()->json(['error' => 'User profile not found'], 404);
+        }
+
+        // Update the user profile with validated data
+        $profile->update($validatedData);
+
+
+    //     $data = Validator::make($request->all(), $request->rules());
         
-        $validatedData = $data->validated();
+    //     $validatedData = $data->validated();
 
-            if ($data->fails()) {
-                return response()->json(['errors' => $data->errors()], 422);
-            }
+    //         if ($data->fails()) {
+    //             return response()->json(['errors' => $data->errors()], 422);
+    //         }
             
 
-            $foundUserId = UserProfile::find($validatedData['user_id']);
-
-dd($foundUserId);
-
-            if (!$foundUserId) {
-                return response()->json(['error' => 'Not found'], 404);
-            }
-
-            $foundUserId->update([
-
-                'firstname'         => $request->input('firstname'),
-                'lastname'          => $request->input('lastname'),
-                'school'            => $request->input('school'),
-                'gender'            => $request->input('gender'),
-                'age'               => $request->input('age'),
-                'state'             => $request->input('state'),
-                'lga'               => $request->input('lga'),
-            ]);
+    //         $foundUserId = UserProfile::find($validatedData['user_id']);
 
 
-            if($request->hasFile('user_image')){
+    //         if (!$foundUserId) {
+    //             return response()->json(['error' => 'Not found'], 404);
+    //         }
 
-                $fileName = time() . '.' . $request->user_image->extension();
-                $request->user_image->storeAs('public/images', $fileName);
+    //         $foundUserId->update([
+
+    //             'firstname'         => $request->input('firstname'),
+    //             'lastname'          => $request->input('lastname'),
+    //             'school'            => $request->input('school'),
+    //             'gender'            => $request->input('gender'),
+    //             'age'               => $request->input('age'),
+    //             'state'             => $request->input('state'),
+    //             'lga'               => $request->input('lga'),
+    //         ]);
+
+
+    //         if($request->hasFile('user_image')){
+
+    //             $fileName = time() . '.' . $request->user_image->extension();
+    //             $request->user_image->storeAs('public/images', $fileName);
             
 
-                $foundUserId->update(['user_image' => $fileName]);
-            }
+    //             $foundUserId->update(['user_image' => $fileName]);
+    //         }
 
-            $newprofile = UserProfile::all();
+    //         $newprofile = UserProfile::all();
 
-            return response()->json([
-                'message' => 'Role updated successfully',
-                'data'      => $newprofile
-            ]);
+    //         return response()->json([
+    //             'message' => 'Role updated successfully',
+    //             'data'      => $newprofile
+    //         ]);
     }
 }
