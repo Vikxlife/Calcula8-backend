@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserProfile\UserProfileRequest;
 use App\Models\User;
 use App\Models\UserProfile;
+use MongoDB\BSON\ObjectId;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -96,17 +97,19 @@ class UserProfileController extends BaseController
     {
         $data = Validator::make($request->all(), $request->rules());
         
-        // $validatedData = $data->validated();
+        $validatedData = $data->validated();
 
             if ($data->fails()) {
                 return response()->json(['errors' => $data->errors()], 422);
             }
-            $_id = $id;
+            
+
+            $_id = UserProfile::find($validatedData[$id])->first();
+
 
             $foundUserId = UserProfile::find($_id);
-            $profile = UserProfile::all();
 
-            dd($profile);
+            dd($foundUserId);
 
 
             if (!$foundUserId) {
