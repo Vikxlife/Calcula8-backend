@@ -101,7 +101,7 @@ class UserProfileController extends BaseController
             return response()->json(['errors' => $data->errors()], 422);
         }
     
-        $validatedData = $data->validated();
+        // $validatedData = $data->validated();
         
         $foundUserId = UserProfile::find($id);
 
@@ -130,53 +130,9 @@ class UserProfileController extends BaseController
         $newprofile = UserProfile::all();
 
         return response()->json([
-            'message' => 'Role updated successfully',
+            'message' => 'Profile updated successfully',
             'data'      => $newprofile
         ]);
     }
-
-    //     $data = Validator::make($request->all(), $request->rules());
-        
-    //     $validatedData = $data->validated();
-
-    //         if ($data->fails()) {
-    //             return response()->json(['errors' => $data->errors()], 422);
-    //         }
-            
-
-    //         $foundUserId = UserProfile::find($validatedData['user_id']);
-
-
-    //         if (!$foundUserId) {
-    //             return response()->json(['error' => 'Not found'], 404);
-    //         }
-
-    //         $foundUserId->update([
-
-    //             'firstname'         => $request->input('firstname'),
-    //             'lastname'          => $request->input('lastname'),
-    //             'school'            => $request->input('school'),
-    //             'gender'            => $request->input('gender'),
-    //             'age'               => $request->input('age'),
-    //             'state'             => $request->input('state'),
-    //             'lga'               => $request->input('lga'),
-    //         ]);
-
-
-    //         if($request->hasFile('user_image')){
-
-    //             $fileName = time() . '.' . $request->user_image->extension();
-    //             $request->user_image->storeAs('public/images', $fileName);
-            
-
-    //             $foundUserId->update(['user_image' => $fileName]);
-    //         }
-
-    //         $newprofile = UserProfile::all();
-
-    //         return response()->json([
-    //             'message' => 'Role updated successfully',
-    //             'data'      => $newprofile
-    //         ]);
-    }
 }
+
