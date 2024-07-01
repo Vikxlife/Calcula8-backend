@@ -90,4 +90,52 @@ class UserProfileController extends BaseController
             // $formattedUserProfile
         ]);
     }
+
+
+    public function updateuserprofile(UserProfileRequest $request, $user_id)
+    {
+        $data = Validator::make($request->all(), $request->rules());
+        
+        // $validatedData = $data->validated();
+
+            if ($data->fails()) {
+                return response()->json(['errors' => $data->errors()], 422);
+            }
+            
+            $id = $user_id;
+            $foundUserId = User::with('UserProfile')->find($id);
+
+
+            if (!$foundUserId) {
+                return response()->json(['error' => 'Not found'], 404);
+            }
+
+            $foundUserId->update([
+
+                'firstname'         => $request->input('firstname'),
+                'lastname'          => $request->input('lastname'),
+                'school'            => $request->input('school'),
+                'gender'            => $request->input('gender'),
+                'age'               => $request->input('age'),
+                'state'             => $request->input('state'),
+                'lga'               => $request->input('lga'),
+            ]);
+
+
+            if($request->hasFile('user_image')){
+
+                $fileName = time() . '.' . $request->user_image->extension();
+                $request->user_image->storeAs('public/images', $fileName);
+            
+
+                $foundUserId->update(['user_image' => $fileName]);
+            }
+
+            $newprofile = UserProfile::all();
+
+            return response()->json([
+                'message' => 'Role updated successfully',
+                'data'      => $newprofile
+            ]);
+    }
 }
