@@ -95,7 +95,7 @@ class UserProfileController extends BaseController
 
     public function updateuserprofile(UserProfileRequest $request, $id)
     {   
-        dd($id);
+        dd($request->$id);
 
         $data = Validator::make($request->all(), $request->rules());
         
