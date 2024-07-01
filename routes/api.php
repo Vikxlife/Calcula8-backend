@@ -37,7 +37,7 @@ Route::post('/CreateUserProfile', [UserProfileController::class, 'CreateUserProf
 Route::get('/getusers', [RegisterController::class, 'getusers'])->name('getusers');
 Route::get('/getuserprofile', [UserProfileController::class, 'getuserprofile'])->name('getuserprofile');
 
-Route::post('/updateuserprofile/{_id}', [UserProfileController::class, 'updateuserprofile'])->name('updateuserprofile');
+Route::post('/updateuserprofile/{id}', [UserProfileController::class, 'updateuserprofile'])->name('updateuserprofile');
 
 
 
