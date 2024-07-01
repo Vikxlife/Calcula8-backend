@@ -92,7 +92,7 @@ class UserProfileController extends BaseController
     }
 
 
-    public function updateuserprofile(UserProfileRequest $request, $user_id)
+    public function updateuserprofile(UserProfileRequest $request, $id)
     {
         $data = Validator::make($request->all(), $request->rules());
         
@@ -102,7 +102,6 @@ class UserProfileController extends BaseController
                 return response()->json(['errors' => $data->errors()], 422);
             }
             
-            $id = $user_id;
             $foundUserId = User::with('UserProfile')->find($id);
 
 
