@@ -97,6 +97,7 @@ class UserProfileController extends BaseController
     {
 
            // Convert the string ID to a MongoDB ObjectId
+           dd($id);
         try {
             $_id = new ObjectId($id);
             } 
