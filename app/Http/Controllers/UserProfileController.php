@@ -106,7 +106,7 @@ class UserProfileController extends BaseController
             $foundUserId = UserProfile::find($_id);
             $profile = UserProfile::all();
 
-            dd([$profile, $foundUserId]);
+            dd($profile);
 
 
             if (!$foundUserId) {
