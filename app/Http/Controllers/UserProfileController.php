@@ -93,39 +93,27 @@ class UserProfileController extends BaseController
     }
 
 
-    public function updateuserprofile(UserProfileRequest $request, $_id)
+    public function updateuserprofile(UserProfileRequest $request, $id)
     {
-
-           // Convert the string ID to a MongoDB ObjectId
-           dd($_id);
-        try {
-            $_id = new ObjectId($id);
-            } 
-        catch (\Exception $e) {
-                return response()->json(['error' => 'Invalid ID format'], 400);
-            }
-
-            $data = Validator::make($request->all(), $request->rules());
-
-            $validatedData = $data->validated();
-            $foundUserId = UserProfile::find($_id);
-
-        // $data = Validator::make($request->all(), $request->rules());
+        $data = Validator::make($request->all(), $request->rules());
         
-        // $validatedData = $data->validated();
 
-        //     if ($data->fails()) {
-        //         return response()->json(['errors' => $data->errors()], 422);
-        //     }
+            if ($data->fails()) {
+                return response()->json(['errors' => $data->errors()], 422);
+            }
             
+            $validatedData = $data->validated();
 
-        //     $_id = UserProfile::find($validatedData[$id])->first();
+            // $user = Auth::user();
+            $profileId = UserProfile::find($validatedData['id'])->first();
+
+            $_id = UserProfile::find($validatedData[$id]);
 
 
-        //     $foundUserId = UserProfile::find($_id);
-        //     $profile = UserProfile::all();
+            // $foundUserId = UserProfile::find($_id);
+            // $profile = UserProfile::all();
 
-        //     dd($foundUserId);
+            dd($profileId);
 
 
             if (!$foundUserId) {
