@@ -53,7 +53,8 @@ class RegisterController extends BaseController
 
 
     public function getusers(){
-        $data = User::all();
+        $data = User::with(['UserProfile'])->get();
+
 
         return response()->json([
             $data
