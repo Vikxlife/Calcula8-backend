@@ -96,19 +96,7 @@ class UserProfileController extends BaseController
     public function updateuserprofile(UserProfileRequest $request, $id)
     {   
 
-        $validatedData = $request->validated();
-
-        // Find the user profile by ID
-        $profile = UserProfile::find($id);
-
-        dd($profile);
-
-        if (!$profile) {
-            return response()->json(['error' => 'User profile not found'], 404);
-        }
-
-        // Update the user profile with validated data
-        $profile->update($validatedData);
+      dd($request->all());
 
 
     //     $data = Validator::make($request->all(), $request->rules());
