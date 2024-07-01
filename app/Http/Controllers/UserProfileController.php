@@ -101,8 +101,8 @@ class UserProfileController extends BaseController
             if ($data->fails()) {
                 return response()->json(['errors' => $data->errors()], 422);
             }
-            
-            $foundUserId = UserProfile::find($id);
+            $_id = $id;
+            $foundUserId = UserProfile::find($_id);
 
             dd($foundUserId);
 
