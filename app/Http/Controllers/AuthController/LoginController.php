@@ -53,35 +53,40 @@ class LoginController extends BaseController
 
     // }
 
-    public function LoginUser(LoginRequest $request){
-
+    public function LoginUser(LoginRequest $request)
+    {
+        // Retrieve email and password from the request
         $credentials = $request->only(['email', 'password']);
-
+    
+        // Attempt to authenticate the user
         if (!Auth::attempt($credentials)) {
             return response([
                 'error' => 'Invalid credentials',
             ], 422);
         }
-
-
+    
+        // Retrieve the authenticated user
         $user = Auth::user();
-        
+    
+        // Check if the user instance is null
         if (!$user) {
             return response(['error' => 'Auth::user() returned null'], 500);
         }
-        $userId = $user->_id;
-
-        dd($userId);
-
-        $user = User::find($userId); 
-
+    
+        // Retrieve the user ID
+        $userId = $user->getKey(); // Assuming the primary key is 'id'
+    
+        // Retrieve the user instance using Eloquent
+        $user = User::find($userId);
+    
+        // Create a token for the user using Sanctum
         $token = $user->createToken('main')->plainTextToken;
-
+    
+        // Return the user and token as a response
         return response([
             'user'  => $user,
             'token' => $token,
         ]);
-
     }
 
 
