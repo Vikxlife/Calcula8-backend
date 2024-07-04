@@ -12,6 +12,47 @@ use Laravel\Sanctum\PersonalAccessToken;
 
 class LoginController extends BaseController
 {    
+    // public function LoginUser(LoginRequest $request){
+
+    //     $credentials = $request->only(['email', 'password']);
+
+    //     if (!Auth::attempt($credentials)) {
+    //         return response([
+    //             'error' => 'Invalid credentials',
+    //         ], 422);
+    //     }
+
+
+    //     $user = Auth::user();
+
+    //     // if (!$user->is_verified == 1) {
+    //         // $otp = $this->generateOTP($user);
+    //     //     Mail::to($request->email)->send(new VerifyAccount($otp['token']));
+
+    //     //     return response([
+    //     //         'user' => $user,
+    //     //     ]);
+    //     // }
+        
+        
+    //     if (!$user) {
+    //         return response(['error' => 'Auth::user() returned null'], 500);
+    //     }
+    //     $userId = $user->_id;
+
+    //     $user = User::find($userId); 
+
+    //     $token = $user->createToken('main')->plainTextToken;
+
+        
+    
+    //     return response([
+    //         'user'  => $user,
+    //         'token' => $token,
+    //     ]);
+
+    // }
+
     public function LoginUser(LoginRequest $request){
 
         $credentials = $request->only(['email', 'password']);
@@ -24,35 +65,25 @@ class LoginController extends BaseController
 
 
         $user = Auth::user();
-
-        // if (!$user->is_verified == 1) {
-            // $otp = $this->generateOTP($user);
-        //     Mail::to($request->email)->send(new VerifyAccount($otp['token']));
-
-        //     return response([
-        //         'user' => $user,
-        //     ]);
-        // }
-        
         
         if (!$user) {
             return response(['error' => 'Auth::user() returned null'], 500);
         }
         $userId = $user->_id;
-        
-        $user = User::find($userId); // Replace $userId with your actual user ID
 
-        // /** @var \App\Models\User $user **/
-        $token = $user->User::createToken('main')->plainTextToken;
+        dd($userId);
 
-        
-    
+        $user = User::find($userId); 
+
+        $token = $user->createToken('main')->plainTextToken;
+
         return response([
             'user'  => $user,
             'token' => $token,
         ]);
 
     }
+
 
 
     public function logout(Request $request)
