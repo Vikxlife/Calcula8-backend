@@ -15,8 +15,6 @@ class LoginController extends BaseController
 
         $credentials = $request->only(['email', 'password']);
 
-        
-
         if (!Auth::attempt($credentials)) {
             return response([
                 'error' => 'Invalid credentials',
@@ -35,10 +33,12 @@ class LoginController extends BaseController
         //     ]);
         // }
         
+        
         if (!$user) {
             return response(['error' => 'Auth::user() returned null'], 500);
         }
 
+        dd($user);
      
         /** @var \App\Models\User $user **/
         $token = $user->createToken('main')->plainTextToken;
