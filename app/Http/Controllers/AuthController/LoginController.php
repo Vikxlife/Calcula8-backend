@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\AuthRequest\LoginRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
@@ -37,9 +38,10 @@ class LoginController extends BaseController
         if (!$user) {
             return response(['error' => 'Auth::user() returned null'], 500);
         }
+        $userId = $user->_id;
+        
+        $user = User::find($userId); // Replace $userId with your actual user ID
 
-        // dd($user);
-     
         // /** @var \App\Models\User $user **/
         $token = $user->User::createToken('main')->plainTextToken;
 
