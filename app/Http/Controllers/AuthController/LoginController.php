@@ -38,16 +38,16 @@ class LoginController extends BaseController
             return response(['error' => 'Auth::user() returned null'], 500);
         }
 
-        dd($user);
+        // dd($user);
      
-        /** @var \App\Models\User $user **/
-        $token = $user->createToken('main')->plainTextToken;
+        // /** @var \App\Models\User $user **/
+        $token = $user->User::createToken('main')->plainTextToken;
 
         
     
         return response([
             'user'  => $user,
-            // 'token' => $token,
+            'token' => $token,
         ]);
 
     }
