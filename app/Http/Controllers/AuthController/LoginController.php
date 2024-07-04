@@ -12,81 +12,45 @@ use Laravel\Sanctum\PersonalAccessToken;
 
 class LoginController extends BaseController
 {    
-    // public function LoginUser(LoginRequest $request){
+    public function LoginUser(LoginRequest $request){
 
-    //     $credentials = $request->only(['email', 'password']);
-
-    //     if (!Auth::attempt($credentials)) {
-    //         return response([
-    //             'error' => 'Invalid credentials',
-    //         ], 422);
-    //     }
-
-
-    //     $user = Auth::user();
-
-    //     // if (!$user->is_verified == 1) {
-    //         // $otp = $this->generateOTP($user);
-    //     //     Mail::to($request->email)->send(new VerifyAccount($otp['token']));
-
-    //     //     return response([
-    //     //         'user' => $user,
-    //     //     ]);
-    //     // }
-        
-        
-    //     if (!$user) {
-    //         return response(['error' => 'Auth::user() returned null'], 500);
-    //     }
-    //     $userId = $user->_id;
-
-    //     $user = User::find($userId); 
-
-    //     $token = $user->createToken('main')->plainTextToken;
-
-        
-    
-    //     return response([
-    //         'user'  => $user,
-    //         'token' => $token,
-    //     ]);
-
-    // }
-
-    public function LoginUser(LoginRequest $request)
-    {
-        // Retrieve email and password from the request
         $credentials = $request->only(['email', 'password']);
-    
-        // Attempt to authenticate the user
+
         if (!Auth::attempt($credentials)) {
             return response([
                 'error' => 'Invalid credentials',
             ], 422);
         }
-    
-        // Retrieve the authenticated user
+
+
         $user = Auth::user();
-    
-        // Check if the user instance is null
+
+        // if (!$user->is_verified == 1) {
+            // $otp = $this->generateOTP($user);
+        //     Mail::to($request->email)->send(new VerifyAccount($otp['token']));
+
+        //     return response([
+        //         'user' => $user,
+        //     ]);
+        // }
+        
+        
         if (!$user) {
             return response(['error' => 'Auth::user() returned null'], 500);
         }
+        
+
+        // /** @var \App\Models\User $user **/
+        // $token = $user->createToken('main')->plainTextToken;
+
+
+        
     
-        // Retrieve the user ID
-        $userId = $user->getKey(); // Assuming the primary key is 'id'
-    
-        // Retrieve the user instance using Eloquent
-        $user = User::find($userId);
-    
-        // Create a token for the user using Sanctum
-        $token = $user->createToken('main')->plainTextToken;
-    
-        // Return the user and token as a response
         return response([
             'user'  => $user,
-            'token' => $token,
+            // 'token' => $token,
         ]);
+
     }
 
 
