@@ -1,5 +1,0 @@
-services:
-  - name: app
-    env: docker
-    buildCommand: docker build -t calcul8_docker_file .
-    startCommand: docker run -p 8080:80 calcul8_docker_file
