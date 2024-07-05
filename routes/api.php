@@ -40,5 +40,9 @@ Route::get('/getuserprofile', [UserProfileController::class, 'getuserprofile'])-
 Route::post('/updateuserprofile/{id}', [UserProfileController::class, 'updateuserprofile'])->name('updateuserprofile');
 
 
-
+Route::get('/test', function (Request $request) {
+    return response()->json([
+        "message" => "e no go work ke",
+    ]);
+});
 
