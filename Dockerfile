@@ -24,29 +24,14 @@ WORKDIR /var/www/html
 COPY . .
 
 # Set permissions for Laravel
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
-
-# Verify PHP version
-RUN php -v
-
-# Verify installed PHP extensions
-RUN php -m
 
 # Set ServerName to localhost
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
-# Debugging step to show the status of the composer.json file
-RUN ls -la /var/www/html/composer.json
-
-# Remove existing symbolic link if it exists
-RUN rm -f public/storage
-
 # Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader || composer install --no-dev --optimize-autoloader --ignore-platform-req=ext-mongodb
-
-# Set up Apache
-COPY ./apache-config.conf /etc/apache2/sites-available/000-default.conf
+RUN composer install --no-dev --optimize-autoloader || \
+    composer install --no-dev --optimize-autoloader --ignore-platform-req=ext-mongodb
 
 # Expose port 80 and start Apache
 EXPOSE 80
