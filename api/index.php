@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Foundation\Http\Kernel;
+use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
 require __DIR__.'/../vendor/autoload.php';
