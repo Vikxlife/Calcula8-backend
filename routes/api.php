@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController\LoginController;
 use App\Http\Controllers\AuthController\PasswordResetController;
 use App\Http\Controllers\AuthController\RegisterController;
 use App\Http\Controllers\AuthController\VerifyEmailController;
+use App\Http\Controllers\Exam\GetExamQuestionController;
 use App\Http\Controllers\UserProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,17 +33,10 @@ Route::post('/passwordReset', [PasswordResetController::class, 'passwordReset'])
 // Route::middleware('auth-sanctum')->post('/CreateUserProfile', [UserProfileController::class, 'CreateUserProfile'])->name('CreateUserProfile');
 Route::post('/CreateUserProfile', [UserProfileController::class, 'CreateUserProfile'])->name('CreateUserProfile');
 
-
-
 Route::get('/getusers', [RegisterController::class, 'getusers'])->name('getusers');
 Route::get('/getuserprofile', [UserProfileController::class, 'getuserprofile'])->name('getuserprofile');
 
 Route::post('/updateuserprofile/{id}', [UserProfileController::class, 'updateuserprofile'])->name('updateuserprofile');
 
 
-Route::get('/test', function (Request $request) {
-    return response()->json([
-        "message" => "e no go work ke",
-    ]);
-});
-
+Route::get('/fetchQuestion/{paper}', [GetExamQuestionController::class, 'fetchQuestion'])->name('fetchQuestion');
