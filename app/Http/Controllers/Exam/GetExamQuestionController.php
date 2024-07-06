@@ -10,6 +10,8 @@ class GetExamQuestionController extends Controller
 {
     public function fetchQuestion($paper)
     {
+        $paper = strtolower($paper);
+        
         $response = Http::withHeaders([
             'Accept'=> 'application/json',
             'Content-Type'=> 'application/json',
