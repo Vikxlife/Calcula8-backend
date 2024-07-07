@@ -40,7 +40,8 @@ class LoginController extends BaseController
         }
         
 
-        /** @var \App\Models\User $user **/
+        // /** @var \App\Models\User $user **/
+        $user = User::where('email', $request->email);
         $token = $user->createToken('main')->plainTextToken;
 
 
