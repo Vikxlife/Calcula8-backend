@@ -15,7 +15,13 @@ return [
     |
     */
 
-    'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', 'https://calcul88-85d010764e99.herokuapp.com/', 'localhost,127.0.0.1')),
+    // 'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
+    //     '%s%s',
+    //     'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1',
+    //     Sanctum::currentApplicationUrlWithPort()
+    // ))),
+
+    'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', 'calcul88-85d010764e99.herokuapp.com',)),
     // 'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS',  'localhost,127.0.0.1')),
 
 
