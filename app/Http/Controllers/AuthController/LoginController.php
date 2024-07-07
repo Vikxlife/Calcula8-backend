@@ -42,11 +42,7 @@ class LoginController extends BaseController
 
         // /** @var \App\Models\User $user **/
         $user = User::where('email', $request->email)->firstOrFail();
-        dd($user);
-        $token = $user->createToken('main')->plainTextToken;
-
-
-        
+        $token = $user->createToken('main')->plainTextToken;      
     
         return response([
             'user'  => $user,
