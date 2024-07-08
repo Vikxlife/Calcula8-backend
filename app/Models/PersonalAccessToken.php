@@ -2,7 +2,6 @@
 
 namespace App\Models\Sanctum;
 
-// use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Sanctum\Contracts\HasAbilities;
 use Jenssegers\Mongodb\Eloquent\Model;
 
