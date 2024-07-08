@@ -9,39 +9,13 @@ use Illuminate\Notifications\Notifiable;
 use Jenssegers\Mongodb\Eloquent\Model as EloquentModel;
 
 
-use Laravel\Sanctum\HasApiTokens as SanctumHasApiTokens ;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Jenssegers\Mongodb\Relations\HasOne;
-use Laravel\Sanctum\NewAccessToken;
+use Jenssegers\Mongodb\Relations\HasOne; 
 
 class User extends EloquentModel implements AuthenticatableContract
 {
-    use SanctumHasApiTokens, Notifiable, HasFactory, AuthenticatableTrait, AuthorizableTrait;
-
-
-    public function createCustomToken(string $name, array $abilities = ['*'])
-    {
-        // Custom logic before token creation
-        $this->ensurePersonalAccessTokenExists();
-
-        $token = $this->tokens()->create([
-            'name' => $name,
-            'token' => hash('sha256', $plainTextToken = Str::random(40)),
-            'abilities' => $abilities,
-        ]);
-
-        // Custom logic after token creation
-
-        return new NewAccessToken($token, $plainTextToken);
-    }
-
-    // protected function ensurePersonalAccessTokenExists()
-    // {
-    //     // Ensure the tokens relationship is correctly set up for MongoDB
-    //     if (!class_exists(PersonalAccessToken::class)) {
-    //         throw new \Exception("PersonalAccessToken class does not exist");
-    //     }
-    // }
+    use HasApiTokens, Notifiable, HasFactory, AuthenticatableTrait, AuthorizableTrait;
 
 
     /**
