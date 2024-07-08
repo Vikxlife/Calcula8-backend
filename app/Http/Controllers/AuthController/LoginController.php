@@ -4,9 +4,11 @@ namespace App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\AuthRequest\LoginRequest;
+use App\Mail\VerifyAccount;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Request;
 use Laravel\Sanctum\PersonalAccessToken;
 
@@ -25,14 +27,14 @@ class LoginController extends BaseController
 
         $user = Auth::user();
 
-        // if (!$user->is_verified == 1) {
-            // $otp = $this->generateOTP($user);
-        //     Mail::to($request->email)->send(new VerifyAccount($otp['token']));
+        if (!$user->is_verified == 1) {
+            $otp = $this->generateOTP($user);
+            Mail::to($request->email)->send(new VerifyAccount($otp['token']));
 
-        //     return response([
-        //         'user' => $user,
-        //     ]);
-        // }
+            return response([
+                'user' => $user,
+            ]);
+        }
         
         
         if (!$user) {
