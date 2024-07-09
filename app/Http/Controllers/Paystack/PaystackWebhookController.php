@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Paystack;
 
+use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
 
 class PaystackWebhookController extends BaseController
