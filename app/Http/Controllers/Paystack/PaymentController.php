@@ -66,6 +66,14 @@ class PaymentController extends BaseController
             'amount' => 'required|integer',
         ]);
 
+       $user = Auth::user();
+
+       if(!$user){
+            return response()->json([
+                'message' => 'Invalid user, can send request',
+            ]);
+       }
+
         try {
             $redirectUrl = Paystack::getAuthorizationUrl()->redirectNow();
             return response()->json(['redirectUrl' => $redirectUrl->getTargetUrl()], 200);
