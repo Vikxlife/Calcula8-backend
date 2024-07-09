@@ -17,7 +17,6 @@ use Unicodeveloper\Paystack\Facades\Paystack;
 
 class PaymentController extends BaseController
 {
-    Log::info();
 
 //     /**
 //      * Redirect the User to Paystack Payment Page
