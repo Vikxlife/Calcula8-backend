@@ -46,3 +46,6 @@ Route::get('/fetchQuestion/{paper}', [GetExamQuestionController::class, 'fetchQu
 Route::post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
 
 Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback'])->name('payment');
+
+
+Route::get('/paystack/webhook', [PaymentController::class, 'handleWebhook'])->name('paystack');
