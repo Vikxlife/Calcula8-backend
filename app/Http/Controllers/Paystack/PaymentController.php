@@ -61,6 +61,9 @@ class PaymentController extends BaseController
      */
     public function redirectToGateway(Request $request)
     {
+
+        dd('ouiyuyuiyyuiyi');
+
         $request->validate([
             'email' => 'required|email',
             'amount' => 'required|integer',
