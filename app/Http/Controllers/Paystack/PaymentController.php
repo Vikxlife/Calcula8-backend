@@ -103,7 +103,8 @@ class PaymentController extends BaseController
             $paymentDetails = Paystack::getPaymentData();
 
             return response()->json([
-                'data' => $paymentDetails
+                // 'data' => $paymentDetails
+                $paymentDetails->data->customer->email
             ]);
 
             if ($paymentDetails->data->status == 'success') {
