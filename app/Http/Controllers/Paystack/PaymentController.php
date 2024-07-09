@@ -62,7 +62,6 @@ class PaymentController extends BaseController
     public function redirectToGateway(Request $request)
     {
 
-        dd('ouiyuyuiyyuiyi');
 
         $request->validate([
             'email' => 'required|email',
@@ -70,6 +69,7 @@ class PaymentController extends BaseController
         ]);
 
        $user = Auth::user();
+       dd($user);
 
        if(!$user){
             return response()->json([
