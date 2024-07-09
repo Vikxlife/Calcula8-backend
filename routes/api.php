@@ -33,19 +33,14 @@ Route::post('/LoginUser', [LoginController::class, 'LoginUser'])->name('LoginUse
 Route::middleware('auth:sanctum')->post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/verifyAccount', [VerifyEmailController::class, 'verifyAccount'])->name('verifyAccount');
 Route::post('/passwordReset', [PasswordResetController::class, 'passwordReset'])->name('passwordReset');
+
 Route::middleware('auth-sanctum')->post('/CreateUserProfile', [UserProfileController::class, 'CreateUserProfile'])->name('CreateUserProfile');
 Route::get('/getuserprofile', [UserProfileController::class, 'getuserprofile'])->name('getuserprofile');
-
 Route::post('/updateuserprofile/{id}', [UserProfileController::class, 'updateuserprofile'])->name('updateuserprofile');
 
 
 Route::get('/fetchQuestion/{paper}', [GetExamQuestionController::class, 'fetchQuestion'])->name('fetchQuestion');
 
-
-
-Route::post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
-
+Route::middleware('auth-sanctum')->post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
 Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback'])->name('payment');
-
-
 Route::get('/paystack/webhook', [PaymentController::class, 'handleWebhook'])->name('paystack');
