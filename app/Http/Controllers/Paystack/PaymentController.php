@@ -95,12 +95,15 @@ class PaymentController extends BaseController
     }
 
 
-    public function handleGatewayCallback()
+    public function handleGatewayCallback(Request $request)
     {
+        $payload = $request->all();
+        return response()->json([
+            $payload
+        ]);
+
         try {
             $paymentDetails = Paystack::getPaymentData();
-
-            response()->json([$paymentDetails]);
 
             if ($paymentDetails->data->status == 'success') {
                 $email = $paymentDetails->data->customer->email; 
