@@ -70,9 +70,7 @@ class PaymentController extends BaseController
 
        $user = Auth::user();
 
-    //    $email = $user->email;
-
-    //    $this->handleGatewayCallback($email);
+  
 
        if(!$user){
             return response()->json([
@@ -82,8 +80,11 @@ class PaymentController extends BaseController
 
         try {
             $redirectUrl = Paystack::getAuthorizationUrl()->redirectNow();
+                 $email = $user->email;
 
-            return response()->json(['redirectUrl' => $redirectUrl->getTargetUrl()], 200);
+                $this->handleGatewayCallback($email);
+
+            return response()->json(['redirectUrl' => $redirectUrl->getTargetUrl(), $email], 200);
             
         }catch(\Exception $e) {
             return response()->json(['msg'=>'The paystack token has expired. Please refresh the page and try again.', 'type'=>'error']);
