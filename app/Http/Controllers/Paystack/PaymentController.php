@@ -70,21 +70,24 @@ class PaymentController extends BaseController
 
        $user = Auth::user();
 
-  
-
        if(!$user){
             return response()->json([
                 'message' => 'Invalid user, cannot send request',
             ]);
        }
 
+       $paymentRequestData = [
+            'email' => $user->email,
+            'amount' => $request->amount,
+            'reference' => Paystack::genTranxRef(), 
+            'callback_url' => route('paystack.callback'), 
+        ];
+
         try {
-            $redirectUrl = Paystack::getAuthorizationUrl()->redirectNow();
-                 $email = $user->email;
 
-                $this->handleGatewayCallback($email);
-
-            return response()->json(['redirectUrl' => $redirectUrl->getTargetUrl(), $email], 200);
+            $redirectUrl = Paystack::getAuthorizationUrl($paymentRequestData)->redirectNow();
+                   
+            return response()->json(['redirectUrl' => $redirectUrl->getTargetUrl(),], 200);
             
         }catch(\Exception $e) {
             return response()->json(['msg'=>'The paystack token has expired. Please refresh the page and try again.', 'type'=>'error']);
@@ -92,28 +95,26 @@ class PaymentController extends BaseController
     }
 
 
-    public function handleGatewayCallback($email)
-        {
+    public function handleGatewayCallback()
+    {
+        try {
             $paymentDetails = Paystack::getPaymentData();
 
-            // Example response
-            // $paymentDetails['data']['status'] will be 'success' or 'failed'
-            if ($paymentDetails['data']['status'] == 'success') {
+            if ($paymentDetails->data->status == 'success') {
+                $email = $paymentDetails->data->customer->email; 
 
                 ExamSubscription::create([
-                    'status'      => true,
-                    'email'         => $email
-
+                    'status' => true,
+                    'email' => $email
                 ]);
-                // Store the payment details in the database
-                // Redirect to success page
-                // return redirect()->route('home')->with('success', 'Payment successful');
-                return response()->json(['msg'=>'success']);
 
+                return response()->json(['msg' => 'success']);
             } else {
-                // Redirect to failure page
-                return response()->json(['msg'=>'failed']);
+                return response()->json(['msg' => 'failed']);
             }
+        } catch (\Exception $e) {
+            return response()->json(['msg' => 'Error handling payment callback', 'type' => 'error'], 500);
         }
+    }
 
 }
