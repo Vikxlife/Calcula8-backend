@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Paystack;
 
 use App\Http\Controllers\BaseController;
+use App\Models\ExamSubscription;
 use Illuminate\Http\Request;
 
 // use App\Http\Requests;
@@ -62,14 +63,16 @@ class PaymentController extends BaseController
     public function redirectToGateway(Request $request)
     {
 
-
         $request->validate([
             'email' => 'required|email',
             'amount' => 'required|integer',
         ]);
 
        $user = Auth::user();
-       dd($user);
+
+       $email = $user->email;
+
+       $this->handleGatewayCallback($email);
 
        if(!$user){
             return response()->json([
@@ -79,6 +82,7 @@ class PaymentController extends BaseController
 
         try {
             $redirectUrl = Paystack::getAuthorizationUrl()->redirectNow();
+
             return response()->json(['redirectUrl' => $redirectUrl->getTargetUrl()], 200);
             
         }catch(\Exception $e) {
@@ -87,13 +91,19 @@ class PaymentController extends BaseController
     }
 
 
-    public function handleGatewayCallback()
+    public function handleGatewayCallback($email)
         {
             $paymentDetails = Paystack::getPaymentData();
 
             // Example response
             // $paymentDetails['data']['status'] will be 'success' or 'failed'
             if ($paymentDetails['data']['status'] == 'success') {
+
+                ExamSubscription::create([
+                    'status'      => true,
+                    
+                   
+                ]);
                 // Store the payment details in the database
                 // Redirect to success page
                 // return redirect()->route('home')->with('success', 'Payment successful');

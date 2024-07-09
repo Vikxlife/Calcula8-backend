@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Jenssegers\Mongodb\Eloquent\Model as EloquentModel;
+use Jenssegers\Mongodb\Eloquent\Model as EloquentModel; 
 
 class UserProfile extends EloquentModel
 {
