@@ -42,5 +42,5 @@ Route::post('/updateuserprofile/{id}', [UserProfileController::class, 'updateuse
 Route::get('/fetchQuestion/{paper}', [GetExamQuestionController::class, 'fetchQuestion'])->name('fetchQuestion');
 
 Route::middleware('auth:sanctum')->post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
-Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback'])->name('payment');
+Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback'])->name('payment.callback');
 Route::get('/paystack/webhook', [PaymentController::class, 'handleWebhook'])->name('paystack');
