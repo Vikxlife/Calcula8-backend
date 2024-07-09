@@ -70,9 +70,9 @@ class PaymentController extends BaseController
 
        $user = Auth::user();
 
-       $email = $user->email;
+    //    $email = $user->email;
 
-       $this->handleGatewayCallback($email);
+    //    $this->handleGatewayCallback($email);
 
        if(!$user){
             return response()->json([
