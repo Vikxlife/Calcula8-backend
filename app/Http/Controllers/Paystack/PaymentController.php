@@ -67,6 +67,7 @@ class PaymentController extends BaseController
         ]);
 
        $user = Auth::user();
+       dd($user);
 
        if(!$user){
             return response()->json([
