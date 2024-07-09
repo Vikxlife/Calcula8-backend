@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController\PasswordResetController;
 use App\Http\Controllers\AuthController\RegisterController;
 use App\Http\Controllers\AuthController\VerifyEmailController;
 use App\Http\Controllers\Exam\GetExamQuestionController;
+use App\Http\Controllers\Paystack\PaymentController;
 use App\Http\Controllers\UserProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -39,3 +40,9 @@ Route::post('/updateuserprofile/{id}', [UserProfileController::class, 'updateuse
 
 
 Route::get('/fetchQuestion/{paper}', [GetExamQuestionController::class, 'fetchQuestion'])->name('fetchQuestion');
+
+
+
+Route::post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
+
+Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback'])->name('payment');
