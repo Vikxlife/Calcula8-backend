@@ -80,7 +80,7 @@ class PaymentController extends BaseController
             'email' => $user->email,
             'amount' => $request->amount,
             'reference' => Paystack::genTranxRef(), 
-            // 'callback_url' => route('paystack.callback'), 
+            'callback_url' => route('paystack.callback'), 
         ];
 
         try {
