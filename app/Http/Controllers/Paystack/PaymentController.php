@@ -101,8 +101,8 @@ class PaymentController extends BaseController
 
                 ExamSubscription::create([
                     'status'      => true,
-                    
-                   
+                    'email'         => $email
+
                 ]);
                 // Store the payment details in the database
                 // Redirect to success page

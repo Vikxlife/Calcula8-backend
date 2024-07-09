@@ -11,10 +11,11 @@ class ExamSubscription extends EloquentModel
     use HasFactory;
 
     protected $connection = 'mongodb';
-    protected $collection = 'exaams_subscription_status';
+    protected $collection = 'exams_subscription_status';
 
 
     protected $fillable = [
         'status',
+        'email'
     ];
 }
