@@ -70,7 +70,7 @@ class PaymentController extends BaseController
 
        if(!$user){
             return response()->json([
-                'message' => 'Invalid user, can send request',
+                'message' => 'Invalid user, cannot send request',
             ]);
        }
 
