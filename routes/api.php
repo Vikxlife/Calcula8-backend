@@ -24,16 +24,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/getusers', [RegisterController::class, 'getusers'])->name('getusers');
+
 
 Route::post('/RegisterUser', [RegisterController::class, 'RegisterUser'])->name('RegisterUser'); 
 Route::post('/LoginUser', [LoginController::class, 'LoginUser'])->name('LoginUser'); 
 Route::middleware('auth:sanctum')->post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/verifyAccount', [VerifyEmailController::class, 'verifyAccount'])->name('verifyAccount');
 Route::post('/passwordReset', [PasswordResetController::class, 'passwordReset'])->name('passwordReset');
-// Route::middleware('auth-sanctum')->post('/CreateUserProfile', [UserProfileController::class, 'CreateUserProfile'])->name('CreateUserProfile');
-Route::post('/CreateUserProfile', [UserProfileController::class, 'CreateUserProfile'])->name('CreateUserProfile');
-
-Route::get('/getusers', [RegisterController::class, 'getusers'])->name('getusers');
+Route::middleware('auth-sanctum')->post('/CreateUserProfile', [UserProfileController::class, 'CreateUserProfile'])->name('CreateUserProfile');
 Route::get('/getuserprofile', [UserProfileController::class, 'getuserprofile'])->name('getuserprofile');
 
 Route::post('/updateuserprofile/{id}', [UserProfileController::class, 'updateuserprofile'])->name('updateuserprofile');
