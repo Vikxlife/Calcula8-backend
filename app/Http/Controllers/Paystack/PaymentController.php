@@ -96,57 +96,57 @@ class PaymentController extends BaseController
     }
 
 
-    // public function handleGatewayCallback(Request $request)
-    // {
-    //     $payload = $request->all();
-    //     return response()->json([
-    //         $payload
-    //     ]);
-
-    //     try {
-    //         $paymentDetails = Paystack::getPaymentData();
-
-    //         if ($paymentDetails->data->status == 'success') {
-    //             $email = $paymentDetails->data->customer->email; 
-
-    //             ExamSubscription::create([
-    //                 'status' => true,
-    //                 'email' => $email
-    //             ]);
-
-    //             return response()->json(['msg' => 'success']);
-    //         } else {
-    //             return response()->json(['msg' => 'failed']);
-    //         }
-    //     } catch (\Exception $e) {
-    //         return response()->json(['msg' => 'Error handling payment callback', 'type' => 'error'], 500);
-    //     }
-    // }
-
-
     public function handleGatewayCallback(Request $request)
-{
-    $payload = $request->all();
+    {
+        $payload = $request->all();
+        return response()->json([
+            $payload
+        ]);
 
-    // Log the incoming payload for debugging purposes
-    Log::info('Paystack webhook received:', $payload);
-    // Example: Handle payment success or failure based on event type
-    if ($payload['event'] === 'charge.success') {
-        // Process successful payment
-        Log::info('Payment successful for transaction: ' . $payload['trxref']);
-        // Implement your logic here, e.g., update database, send email, etc.
-    } elseif ($payload['event'] === 'charge.failure') {
-        // Handle failed payment
-        Log::info('Payment failed for transaction: ' . $payload['trxref']);
-        // Implement your logic here, e.g., notify user, update database, etc.
-    } else {
-        // Handle other events if needed
-        Log::info('Webhook event not recognized: ' . $payload['event']);
+        try {
+            $paymentDetails = Paystack::getPaymentData();
+
+            if ($paymentDetails->data->status == 'success') {
+                $email = $paymentDetails->data->customer->email; 
+
+                ExamSubscription::create([
+                    'status' => true,
+                    'email' => $email
+                ]);
+
+                return response()->json(['msg' => 'success']);
+            } else {
+                return response()->json(['msg' => 'failed']);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['msg' => 'Error handling payment callback', 'type' => 'error'], 500);
+        }
     }
 
-    // Respond to Paystack with a success message
-    return response()->json(['status' => 'success']);
-}
+
+//     public function handleGatewayCallback(Request $request)
+// {
+//     $payload = $request->all();
+
+//     // Log the incoming payload for debugging purposes
+//     Log::info('Paystack webhook received:', $payload);
+//     // Example: Handle payment success or failure based on event type
+//     if ($payload['event'] === 'charge.success') {
+//         // Process successful payment
+//         Log::info('Payment successful for transaction: ' . $payload['trxref']);
+//         // Implement your logic here, e.g., update database, send email, etc.
+//     } elseif ($payload['event'] === 'charge.failure') {
+//         // Handle failed payment
+//         Log::info('Payment failed for transaction: ' . $payload['trxref']);
+//         // Implement your logic here, e.g., notify user, update database, etc.
+//     } else {
+//         // Handle other events if needed
+//         Log::info('Webhook event not recognized: ' . $payload['event']);
+//     }
+
+//     // Respond to Paystack with a success message
+//     return response()->json(['status' => 'success']);
+// }
 
 
 }
