@@ -79,7 +79,7 @@ class PaymentController extends BaseController
 
        $paymentRequestData = [
             'email' => $user->email,
-            'id'    => $user-> _id,
+            'id'    => $user->_id,
             'amount' => $request->amount,
             'reference' => Paystack::genTranxRef(), 
             'callback_url' => route('paystack.callback'), 
@@ -104,7 +104,7 @@ class PaymentController extends BaseController
             $paymentDetails = Paystack::getPaymentData();
 
             return response()->json([
-                $paymentDetails->data->status,
+                'data' => $paymentDetails
             ]);
 
             if ($paymentDetails->data->status == 'success') {
