@@ -32,7 +32,7 @@ class PasswordResetController extends BaseController
         $checkEmail = PasswordReset::where('email', $email['email'])->first();
 
         if($checkEmail){
-            $checkEmail::delete();
+            $checkEmail->delete();
         }
 
         $token = random_int(100000000000, 999999999900);
