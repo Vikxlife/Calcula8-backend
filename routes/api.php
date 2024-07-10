@@ -34,7 +34,7 @@ Route::post('/LoginUser', [LoginController::class, 'LoginUser'])->name('LoginUse
 Route::middleware('auth:sanctum')->post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/verifyAccount', [VerifyEmailController::class, 'verifyAccount'])->name('verifyAccount');
 Route::post('/passwordReset', [PasswordResetController::class, 'passwordReset'])->name('passwordReset');
-Route::post('/generateOTP', [BaseController::class, 'generateOTP'])->name('generateOTP');
+Route::post('/generateUserOtp', [BaseController::class, 'generateUserOtp'])->name('generateUserOtp');
 
 
 Route::middleware('auth:sanctum')->post('/CreateUserProfile', [UserProfileController::class, 'CreateUserProfile'])->name('CreateUserProfile');
