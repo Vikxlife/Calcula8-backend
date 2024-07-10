@@ -41,11 +41,9 @@ class BaseController extends Controller
     public function generateUserOtp(Request $request)
     {
 
-        $user_id = $request->only('user_id');
+        $data= $request->validated();
 
-        $token = random_int(100000, 999999);
-
-        $user = User::where('user_id', $user_id)->first();
+        $user = User::where(['email' => $data['email'], '_id' => $data['id']])->first();
 
         if(!$user){
             return response()->json([
@@ -53,7 +51,9 @@ class BaseController extends Controller
             ]);
         }
 
-        UserVerify::where('user_id', $user_id)->delete();
+        $token = random_int(100000, 999999);
+
+        UserVerify::where(['user_id' => $data['id']])->delete();
 
         $verify = UserVerify::create([
             'user_id'    => $user->id,
