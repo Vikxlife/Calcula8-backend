@@ -31,7 +31,6 @@ class UserProfileController extends BaseController
 
             $userId = User::find($request->user_id);
 
-
             $validatedData = $request->post();
             $createprofile = $this->create($validatedData, $fileName, $userId);
 
@@ -127,11 +126,11 @@ class UserProfileController extends BaseController
             $foundUserId->update(['user_image' => $fileName]);
         }
 
-        $newprofile = UserProfile::all();
+        // $newprofile = UserProfile::all();
 
         return response()->json([
             'message' => 'Profile updated successfully',
-            'data'      => $newprofile
+            'data'      => $foundUserId
         ]);
     }
 }
