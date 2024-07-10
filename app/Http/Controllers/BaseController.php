@@ -77,7 +77,7 @@ class BaseController extends Controller
             'token'      => $token,
         ]);
 
-        Mail::to($validatedData['email'])->send(new VerifyAccount($$token));
+        Mail::to($validatedData['email'])->send(new VerifyAccount($token));
 
         
         return [
