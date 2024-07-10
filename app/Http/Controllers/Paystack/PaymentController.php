@@ -18,39 +18,6 @@ use Unicodeveloper\Paystack\Facades\Paystack;
 class PaymentController extends BaseController
 {
 
-//     /**
-//      * Redirect the User to Paystack Payment Page
-//      * @return \Url
-//      */
-//     public function redirectToGateway(Request $request)
-//     {
-//         try{
-//             $redirectUrl = Paystack::getAuthorizationUrl()->redirectNow();
-//             return response()->json(['redirectUrl' => $redirectUrl->getTargetUrl()], 200);
-
-//         }catch(\Exception $e) {
-//             return Redirect::back()->withMessage(['msg'=>'The paystack token has expired. Please refresh the page and try again.', 'type'=>'error']);
-//         }        
-//     }
-
-//     /**
-//      * Obtain Paystack payment information
-//      * @return void
-//      */
-//     public function handleGatewayCallback()
-//     {
-//         $id = Auth::id();
-
-//         $student = User::where('user_id',$id)->first();
-//         // $student_id = $student->id; 
-        
-//         // $paymentDetails = Paystack::getPaymentData(); //this comes with all the data needed to process the transaction
-//     }
-
-
-
-
-
     /**
      * Show the payment form.
      *
@@ -123,31 +90,5 @@ class PaymentController extends BaseController
             return response()->json(['msg' => 'Error handling payment callback', 'type' => 'error'], 500);
         }
     }
-
-
-//     public function handleGatewayCallback(Request $request)
-// {
-//     $payload = $request->all();
-
-//     // Log the incoming payload for debugging purposes
-//     Log::info('Paystack webhook received:', $payload);
-//     // Example: Handle payment success or failure based on event type
-//     if ($payload['event'] === 'charge.success') {
-//         // Process successful payment
-//         Log::info('Payment successful for transaction: ' . $payload['trxref']);
-//         // Implement your logic here, e.g., update database, send email, etc.
-//     } elseif ($payload['event'] === 'charge.failure') {
-//         // Handle failed payment
-//         Log::info('Payment failed for transaction: ' . $payload['trxref']);
-//         // Implement your logic here, e.g., notify user, update database, etc.
-//     } else {
-//         // Handle other events if needed
-//         Log::info('Webhook event not recognized: ' . $payload['event']);
-//     }
-
-//     // Respond to Paystack with a success message
-//     return response()->json(['status' => 'success']);
-// }
-
 
 }
