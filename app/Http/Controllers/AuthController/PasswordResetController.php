@@ -29,6 +29,12 @@ class PasswordResetController extends BaseController
             ]);
         }
 
+        $checkEmail = PasswordReset::where('email', $email['email'])->first();
+
+        if($checkEmail){
+            $checkEmail::delete();
+        }
+
         $token = random_int(100000000000, 999999999900);
 
 
@@ -38,7 +44,10 @@ class PasswordResetController extends BaseController
         ]);
 
         Mail::to($request->email)->send(new PasswordResetLink($token));
-        return $this->success($user);
+
+        return response()->json([
+            'message' => 'Success'
+        ]);
     }
 
 
