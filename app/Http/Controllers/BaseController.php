@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\VerifyAccount;
 use App\Models\User;
 use App\Models\UserVerify;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class BaseController extends Controller
@@ -74,6 +76,9 @@ class BaseController extends Controller
             'expiresAt'  => now()->addMinutes(5),
             'token'      => $token,
         ]);
+
+        Mail::to($validatedData['email'])->send(new VerifyAccount($$token));
+
         
         return [
             'token'  => $token,
