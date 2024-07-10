@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController\LoginController;
 use App\Http\Controllers\AuthController\PasswordResetController;
 use App\Http\Controllers\AuthController\RegisterController;
 use App\Http\Controllers\AuthController\VerifyEmailController;
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Exam\GetExamQuestionController;
 use App\Http\Controllers\Paystack\PaymentController;
 use App\Http\Controllers\UserProfileController;
@@ -33,6 +34,8 @@ Route::post('/LoginUser', [LoginController::class, 'LoginUser'])->name('LoginUse
 Route::middleware('auth:sanctum')->post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/verifyAccount', [VerifyEmailController::class, 'verifyAccount'])->name('verifyAccount');
 Route::post('/passwordReset', [PasswordResetController::class, 'passwordReset'])->name('passwordReset');
+Route::post('/generateOTP', [BaseController::class, 'generateOTP'])->name('generateOTP');
+
 
 Route::middleware('auth:sanctum')->post('/CreateUserProfile', [UserProfileController::class, 'CreateUserProfile'])->name('CreateUserProfile');
 Route::get('/getuserprofile', [UserProfileController::class, 'getuserprofile'])->name('getuserprofile');
