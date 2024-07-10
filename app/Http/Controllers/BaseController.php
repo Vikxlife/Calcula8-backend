@@ -44,7 +44,7 @@ class BaseController extends Controller
 
         $data = Validator::make($request->all(), [
             "email"  => "string",
-            "id"    => "string",
+            "user_id"    => "string",
         ]);
 
         if($data->fails()){
@@ -55,7 +55,7 @@ class BaseController extends Controller
 
         $validatedData = $data->validated();
 
-        $user = User::where(['email' => $validatedData['email'], '_id' => $validatedData['id']])->first();
+        $user = User::where(['email' => $validatedData['email'], '_id' => $validatedData['user_id']])->first();
 
         if(!$user){
             return response()->json([
@@ -65,7 +65,7 @@ class BaseController extends Controller
 
         $token = random_int(100000, 999999);
 
-        UserVerify::where(['user_id' => $data['id']])->delete();
+        UserVerify::where(['user_id' => $validatedData['user_id']])->delete();
 
         $verify = UserVerify::create([
             'user_id'    => $user->id,
