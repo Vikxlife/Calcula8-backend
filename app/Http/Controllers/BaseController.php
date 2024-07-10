@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\UserVerify;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class BaseController extends Controller
 {
@@ -41,9 +42,20 @@ class BaseController extends Controller
     public function generateUserOtp(Request $request)
     {
 
-        $data= $request->validated();
+        $data = Validator::make($request->all(), [
+            "email"  => "string",
+            "id"    => "string",
+        ]);
 
-        $user = User::where(['email' => $data['email'], '_id' => $data['id']])->first();
+        if($data->fails()){
+            return response()->json([
+                "message"=> $data->errors(),
+            ], 400);   
+        }
+
+        $validatedData = $data->validated();
+
+        $user = User::where(['email' => $validatedData['email'], '_id' => $validatedData['id']])->first();
 
         if(!$user){
             return response()->json([
