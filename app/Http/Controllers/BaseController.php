@@ -55,7 +55,7 @@ class BaseController extends Controller
 
         $validatedData = $data->validated();
 
-        $user = User::where(['email' => $validatedData['email'], 'id' => $validatedData['user_id']])->first();
+        $user = User::where(['email' => $validatedData['email'], '_id' => $validatedData['user_id']])->first();
 
 
         if(!$user){
