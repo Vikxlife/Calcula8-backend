@@ -87,7 +87,7 @@
     </style>
 </head>
 
-{{-- <body>
+<body>
     <div class="container">
         <div class="password-reset-form">
             <h2 class="text-center">Reset Password</h2>
@@ -106,7 +106,10 @@
                     <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
                 </div>
 
-                
+                <div class="form-group">
+                    <label for="newPassword">New Password</label>
+                    <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
+                </div>
                 <div class="form-group">
                     <label for="confirmPassword">Confirm Password</label>
                     <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password">
@@ -115,7 +118,7 @@
             </form>
         </div>
     </div>
-</body> --}}
+</body>
 {{-- <body>
     <h1>Reset Password</h1>
 

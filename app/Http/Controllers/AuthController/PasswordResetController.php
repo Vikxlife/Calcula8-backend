@@ -55,7 +55,7 @@ class PasswordResetController extends BaseController
 
     public function showResetForm($token)
     {
-        $verify = PasswordReset::where('token', (int)$token)->first();
+        $verify = PasswordReset::where('token', $token)->first();
 
         if (!$verify) {
             return redirect()->route('error.page')->with('message', 'Invalid or expired token.');
