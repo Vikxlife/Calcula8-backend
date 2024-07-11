@@ -51,7 +51,7 @@ class VerifyEmailController extends BaseController
     
         return response([
             'otpConfirmStatus' => 'Error',
-            'error message' => 'Action unsuccessful,',
+            'error message' => 'Action unsuccessful',
         ], 422);
     }
     
