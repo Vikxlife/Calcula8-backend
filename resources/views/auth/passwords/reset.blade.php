@@ -102,9 +102,11 @@
                 @csrf
                  <input type="hidden" name="token" value="{{ $token }}">
 
-                 <div>
-                    <input type="email" name="email" value="{{ $email }}" hidden required>
-                </div>
+                 @if(isset($email))
+                 <input type="hidden" name="email" value="{{ $email }}" hidden required>
+             @else
+                 <p>Email is not set</p>
+             @endif
 
                 <div class="form-group">
                     <label for="newPassword">New Password</label>
