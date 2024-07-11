@@ -35,7 +35,7 @@ class PasswordResetController extends BaseController
             $checkEmail->delete();
         }
 
-        $token = random_int(100000000000, 999999999900);
+        $token = Str::random(32);
 
 
         PasswordReset::create([
@@ -55,7 +55,7 @@ class PasswordResetController extends BaseController
 
     public function showResetForm($token)
     {
-        $verify = PasswordReset::where('token', (int)$token)->first();
+        $verify = PasswordReset::where('token', $token)->first();
 
         if (!$verify) {
             return redirect()->route('error.page')->with('message', 'Invalid or expired token.');
@@ -74,11 +74,11 @@ class PasswordResetController extends BaseController
     {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required|confirmed|min:8',
+            'password' => 'required|confirmed|min:5',
             'token' => 'required'
         ]);
 
-        $verify = PasswordReset::where('token', (int)$request->token)->first();
+        $verify = PasswordReset::where('token', $request->token)->first();
 
         if (!$verify) {
             return redirect()->route('error.page')->with('message', 'Invalid or expired token.');
