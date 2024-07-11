@@ -37,6 +37,7 @@ class BaseController extends Controller
             [
                 'data'   => $data,
                 'status' => 'Successful',
+                'message' => 'An otp link has been sent to your email'
             ]);
     }
 
@@ -70,7 +71,8 @@ class BaseController extends Controller
 
         UserVerify::where(['user_id' => $validatedData['user_id']])->delete();
 
-        $verify = UserVerify::create([
+        // $verify = 
+        UserVerify::create([
             'user_id'    => $user->id,
             'user_email' => $user->email,
             'expiresAt'  => now()->addMinutes(5),
@@ -80,9 +82,10 @@ class BaseController extends Controller
         Mail::to($validatedData['email'])->send(new VerifyAccount($token));
 
         
-        return [
-            'token'  => $token,
-            'verify' => $verify,
-        ];
+        return response()->json([
+            // 'verify' => $verify,
+            'status' => 'success',
+            'message' => 'An otp link has been sent to your email'
+        ]);
     }
 }

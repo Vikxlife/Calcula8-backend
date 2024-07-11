@@ -46,7 +46,8 @@ class PasswordResetController extends BaseController
         Mail::to($request->email)->send(new PasswordResetLink($token));
 
         return response()->json([
-            'message' => 'Success'
+            'status' => 'success',
+            'message' => 'Password reset link has been sent to your email'
         ]);
     }
 
