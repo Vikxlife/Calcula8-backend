@@ -44,6 +44,7 @@ class VerifyEmailController extends BaseController
                 return response([
                     'otpConfirmStatus' => 'success',
                     'user' => $user,
+                    'message' => 'Your account has been verified, return to log in page and log in'
                 ]);
             }
         }
