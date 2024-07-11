@@ -105,11 +105,6 @@
                     <label for="newPassword">New Password</label>
                     <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
                 </div>
-
-                <div class="form-group">
-                    <label for="newPassword">New Password</label>
-                    <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
-                </div>
                 <div class="form-group">
                     <label for="confirmPassword">Confirm Password</label>
                     <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password">
