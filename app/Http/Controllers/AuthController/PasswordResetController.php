@@ -65,7 +65,7 @@ class PasswordResetController extends BaseController
         //     return redirect()->route('error.page')->with('message', 'Token has expired.');
         // }
 
-        return view('auth.passwords.reset', ['token' => $token, 'email' => $verify->user_email]);
+        return view('auth.passwords.reset', ['token' => $token, 'email' => $verify->email]);
     }
 
 
