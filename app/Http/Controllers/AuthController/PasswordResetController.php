@@ -78,7 +78,7 @@ class PasswordResetController extends BaseController
             'token' => 'required'
         ]);
 
-        $verify = PasswordReset::where('token', (int)$request->token)->first();
+        $verify = PasswordReset::where('token', $request->token)->first();
 
         if (!$verify) {
             return redirect()->route('error.page')->with('message', 'Invalid or expired token.');
