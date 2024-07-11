@@ -116,7 +116,7 @@
         </div>
     </div>
 </body> --}}
-<body>
+{{-- <body>
     <h1>Reset Password</h1>
 
     <form method="POST" action="{{ route('password.update') }}">
@@ -139,5 +139,5 @@
 
         <button type="submit">Reset Password</button>
     </form>
-</body>
+</body> --}}
 </html>
