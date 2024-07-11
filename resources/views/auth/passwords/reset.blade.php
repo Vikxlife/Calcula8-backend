@@ -111,7 +111,7 @@
                 </div>
                 <div class="form-group">
                     <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" name="confirm_password" class="form-control" id="confirmPassword" placeholder="Confirm new password">
+                    <input type="password" name="password_confirmation" class="form-control" id="confirmPassword" placeholder="Confirm new password">
                 </div>
                 <button type="submit" class="btn-submit">Reset Password</button>
             </form>
