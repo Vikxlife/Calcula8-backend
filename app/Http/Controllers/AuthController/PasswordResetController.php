@@ -35,7 +35,7 @@ class PasswordResetController extends BaseController
             $checkEmail->delete();
         }
 
-        $token = random_int(100000000000, 999999999900);
+        $token = Str::random(32);
 
 
         PasswordReset::create([

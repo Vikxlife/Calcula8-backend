@@ -28,6 +28,10 @@ class PasswordReset extends EloquentModel
         'token',
     ];
 
+    protected $casts = [
+        'token' => 'string',
+    ];
+
 
 
     public function user(): BelongsTo
