@@ -87,7 +87,7 @@
     </style>
 </head>
 
-<body>
+{{-- <body>
     <div class="container">
         <div class="password-reset-form">
             <h2 class="text-center">Reset Password</h2>
@@ -115,8 +115,8 @@
             </form>
         </div>
     </div>
-</body>
-{{-- <body>
+</body> --}}
+<body>
     <h1>Reset Password</h1>
 
     <form method="POST" action="{{ route('password.update') }}">
@@ -139,5 +139,5 @@
 
         <button type="submit">Reset Password</button>
     </form>
-</body> --}}
+</body>
 </html>
