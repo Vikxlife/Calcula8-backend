@@ -75,6 +75,11 @@
             display: inline-block;
         }
 
+        .btn-submit:disabled {
+            background-color: grey;
+            cursor: not-allowed;
+        }
+
         .btn-submit:hover {
             background-color: #0056b3;
         }
@@ -96,15 +101,10 @@
     <div class="container">
         <div class="password-reset-form">
             <h2 class="text-center">Reset Password</h2>
-
-            <form class="mt-4 formstyle" method="POST" action="{{ route('password.update') }}" id="resetPasswordForm">
-
+            <form class="mt-4 formstyle" method="POST" action="{{ route('password.update') }}">
                 @csrf
-                 <input type="hidden" name="token" value="{{ $token }}">
-
-                 <div>
-                    <input type="email" name="email" value="{{ $email }}" hidden required>
-                </div>
+                <input type="hidden" name="token" value="{{ $token }}">
+                <input type="hidden" name="email" value="{{ $email }}" required>
 
                 <div class="form-group">
                     <label for="newPassword">New Password</label>
@@ -114,11 +114,29 @@
                     <label for="confirmPassword">Confirm Password</label>
                     <input type="password" name="password_confirmation" class="form-control" id="confirmPassword" placeholder="Confirm new password" required>
                 </div>
-                <button type="submit" class="btn-submit">Reset Password</button>
+                <button type="submit" class="btn-submit btn btn-primary" disabled>Reset Password</button>
             </form>
         </div>
     </div>
-</body>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const password = document.getElementById('newPassword');
+            const confirmPassword = document.getElementById('confirmPassword');
+            const submitButton = document.querySelector('.btn-submit');
+
+            function validatePasswords() {
+                if (password.value === confirmPassword.value && password.value !== '') {
+                    submitButton.removeAttribute('disabled');
+                } else {
+                    submitButton.setAttribute('disabled', 'disabled');
+                }
+            }
+
+            password.addEventListener('input', validatePasswords);
+            confirmPassword.addEventListener('input', validatePasswords);
+        });
+    </script>
 
 </html>
 
