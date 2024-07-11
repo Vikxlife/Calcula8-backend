@@ -89,11 +89,57 @@
             }
         }
     </style>
-
+    
 </head>
 
-
 <body>
+    <div class="container">
+        <div class="password-reset-form">
+            <h2 class="text-center">Reset Password</h2>
+
+            <form class="mt-4 formstyle" method="POST" action="{{ route('password.update') }}" id="resetPasswordForm">
+
+                @csrf
+                 <input type="hidden" name="token" value="{{ $token }}">
+
+                 <div>
+                    <input type="email" name="email" value="{{ $email }}" hidden required>
+                </div>
+
+                <div class="form-group">
+                    <label for="newPassword">New Password</label>
+                    <input type="password" name="password" class="form-control" id="newPassword" placeholder="Enter new password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" name="password_confirmation" class="form-control" id="confirmPassword" placeholder="Confirm new password" required>
+                </div>
+                <button type="submit" class="btn-submit">Reset Password</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('resetPasswordForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission for debugging
+
+            // You can add additional validation here if needed
+            var form = event.target;
+
+            // Log form data for debugging
+            console.log(new FormData(form));
+
+            // Uncomment the next line to allow form submission once debugging is done
+            // form.submit();
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+{{-- <body>
     <h1>Reset Password</h1>
 
     <form method="POST" action="{{ route('password.update') }}">
@@ -116,5 +162,4 @@
 
         <button type="submit">Reset Password</button>
     </form>
-</body> 
-</html>
+</body> --}}
