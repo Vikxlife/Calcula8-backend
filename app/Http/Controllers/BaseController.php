@@ -85,7 +85,7 @@ class BaseController extends Controller
         return response()->json([
             // 'verify' => $verify,
             'status' => 'success',
-            'message' => 'An otp link has been sent to your email'
+            'message' => 'An otp has been sent to your email'
         ]);
     }
 }
