@@ -13,7 +13,7 @@ class PasswordResetLink extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private string $token;
+    private int $token;
 
 /**
  * Create a new message instance.
