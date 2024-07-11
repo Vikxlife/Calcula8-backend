@@ -102,11 +102,9 @@
                 @csrf
                  <input type="hidden" name="token" value="{{ $token }}">
 
-                 @if(isset($email))
-                 <input type="hidden" name="email" value="{{ $email }}" hidden required>
-             @else
-                 <p>Email is not set</p>
-             @endif
+                 <div>
+                    <input type="email" name="email" value="{{ $email }}" hidden required>
+                </div>
 
                 <div class="form-group">
                     <label for="newPassword">New Password</label>
@@ -120,21 +118,6 @@
             </form>
         </div>
     </div>
-
-    <script>
-        document.getElementById('resetPasswordForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission for debugging
-
-            // You can add additional validation here if needed
-            var form = event.target;
-
-            // Log form data for debugging
-            console.log(new FormData(form));
-
-            // Uncomment the next line to allow form submission once debugging is done
-            // form.submit();
-        });
-    </script>
 </body>
 
 </html>
