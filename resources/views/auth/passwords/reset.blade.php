@@ -13,6 +13,10 @@
             margin: 0;
         }
 
+        .formstyle{
+            padding: 1rem 3rem;
+        }
+
         .container {
             width: 90%;
             max-width: 400px;
@@ -92,7 +96,7 @@
         <div class="password-reset-form">
             <h2 class="text-center">Reset Password</h2>
 
-            <form class="mt-4" method="POST" action="{{ route('password.update') }}">
+            <form class="mt-4 formstyle" method="POST" action="{{ route('password.update') }}">
 
                 @csrf
                  <input type="hidden" name="token" value="{{ $token }}">
@@ -103,11 +107,11 @@
 
                 <div class="form-group">
                     <label for="newPassword">New Password</label>
-                    <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
+                    <input type="password" name="password" class="form-control" id="newPassword" placeholder="Enter new password">
                 </div>
                 <div class="form-group">
                     <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password">
+                    <input type="password" name="confirm_password" class="form-control" id="confirmPassword" placeholder="Confirm new password">
                 </div>
                 <button type="submit" class="btn-submit">Reset Password</button>
             </form>
