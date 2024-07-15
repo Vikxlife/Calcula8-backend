@@ -20,7 +20,7 @@ class BaseController extends Controller
         $verify = UserVerify::create([
             'user_id'    => $user->id,
             'user_email' => $user->email,
-            'expiresAt'  => now()->addMinutes(5),
+            'expiresAt'  => now()->addMinutes(10),
             'token'      => $token,
         ]);
         
@@ -75,7 +75,7 @@ class BaseController extends Controller
         UserVerify::create([
             'user_id'    => $user->id,
             'user_email' => $user->email,
-            'expiresAt'  => now()->addMinutes(5),
+            'expiresAt'  => now()->addMinutes(10),
             'token'      => $token,
         ]);
 
