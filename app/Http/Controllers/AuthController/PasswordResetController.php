@@ -41,6 +41,7 @@ class PasswordResetController extends BaseController
         PasswordReset::create([
             'email' => $user->email,
             'token' => $token,
+            'expiresAt'  => now()->addMinutes(10),
         ]);
 
         Mail::to($request->email)->send(new PasswordResetLink($token));

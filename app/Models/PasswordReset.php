@@ -26,11 +26,13 @@ class PasswordReset extends EloquentModel
     protected $fillable = [
         'email',
         'token',
+        'expiresAt',
     ];
 
     protected $casts = [
-        'token' => 'string',
+        'expiresAt' => 'datetime',
     ];
+
 
 
 
