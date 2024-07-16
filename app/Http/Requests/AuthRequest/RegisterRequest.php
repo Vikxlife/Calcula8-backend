@@ -43,7 +43,7 @@ class RegisterRequest extends FormRequest
             'email.required' => 'An email address is required',
             'email.email' => 'The email address must be valid',
             'password.required' => 'A password is required',
-            'password.min' => 'The password must be at least 6 characters',
+            'password.min' => 'The password must be at least 8 characters and mixed cases',
             // 'password.mixedCase' => 'The password must contain mixed cases'
         ];
     }
