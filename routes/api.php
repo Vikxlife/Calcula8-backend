@@ -37,7 +37,7 @@ Route::post('/passwordReset', [PasswordResetController::class, 'passwordReset'])
 Route::post('/generateUserOtp', [BaseController::class, 'generateUserOtp'])->name('generateUserOtp');
 
 
-Route::middleware('auth:sanctum')->post('/CreateUserProfile', [UserProfileController::class, 'CreateUserProfile'])->name('CreateUserProfile');
+Route::post('/CreateUserProfile', [UserProfileController::class, 'CreateUserProfile'])->name('CreateUserProfile');
 Route::get('/getuserprofile', [UserProfileController::class, 'getuserprofile'])->name('getuserprofile');
 Route::post('/updateuserprofile/{id}', [UserProfileController::class, 'updateuserprofile'])->name('updateuserprofile');
 
