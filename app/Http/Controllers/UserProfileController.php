@@ -75,6 +75,7 @@ class UserProfileController extends BaseController
     public function getuserprofile($id){
 
         $user = Auth::user();
+        dd($user);
 
         if(!$user){
             return response()->json([
@@ -96,7 +97,6 @@ class UserProfileController extends BaseController
 
         return response()->json([
             $userprofile,
-            // $formattedUserProfile
         ]);
     }
 
