@@ -38,8 +38,8 @@ Route::post('/generateUserOtp', [BaseController::class, 'generateUserOtp'])->nam
 
 
 Route::post('/CreateUserProfile', [UserProfileController::class, 'CreateUserProfile'])->name('CreateUserProfile');
-Route::get('/getuserprofile', [UserProfileController::class, 'getuserprofile'])->name('getuserprofile');
-Route::post('/updateuserprofile/{id}', [UserProfileController::class, 'updateuserprofile'])->name('updateuserprofile');
+Route::middleware('auth:sanctum')->get('/getuserprofile/{id}', [UserProfileController::class, 'getuserprofile'])->name('getuserprofile');
+Route::middleware('auth:sanctum')->post('/updateuserprofile/{id}', [UserProfileController::class, 'updateuserprofile'])->name('updateuserprofile');
 
 
 Route::get('/fetchQuestion/{paper}', [GetExamQuestionController::class, 'fetchQuestion'])->name('fetchQuestion');

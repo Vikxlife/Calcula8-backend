@@ -72,8 +72,17 @@ class UserProfileController extends BaseController
         ]);
     }
 
-    public function getuserprofile(){
-        $data = UserProfile::all();
+    public function getuserprofile($id){
+
+        $user = Auth::user();
+
+        if(!$user){
+            return response()->json([
+                'message' => 'user not authorized',
+            ]);
+        }
+
+        $userprofile = UserProfile::find($id);
 
 
         // $formattedUserProfile = $data->map(function ($data) {
@@ -86,7 +95,7 @@ class UserProfileController extends BaseController
 
 
         return response()->json([
-            $data,
+            $userprofile,
             // $formattedUserProfile
         ]);
     }
