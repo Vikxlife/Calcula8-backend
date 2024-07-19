@@ -83,8 +83,8 @@ class UserProfileController extends BaseController
         }
 
 
-        if($id = $user->_id){
-            $userprofile = User::find($id);
+        if($id == $user->_id){
+            $userprofile = User::with('UserProfile')->find($id);
         }
 
 
