@@ -33,6 +33,8 @@ class VerifyEmailController extends BaseController
             }
     
             $user = $verify->user;
+            // $user = User::where('email', $request->email)->firstOrFail();
+
     
             if (!$user->email_verified_at) {
                 $user->email_verified_at = Carbon::now();
@@ -40,10 +42,14 @@ class VerifyEmailController extends BaseController
                 $user->save();
     
                 UserVerify::where(['user_id' => $user->id])->delete();
+                
+                $token = $user->createToken('main')->plainTextToken;
+
     
                 return response([
                     'otpConfirmStatus' => 'success',
                     'user' => $user,
+                    'token' => $token,
                     'message' => 'Your account has been verified, return to log in page and log in'
                 ]);
             }
