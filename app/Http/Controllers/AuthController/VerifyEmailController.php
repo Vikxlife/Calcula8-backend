@@ -43,13 +43,9 @@ class VerifyEmailController extends BaseController
     
                 UserVerify::where(['user_id' => $user->id])->delete();
                 
-                $token = $user->createToken('main')->plainTextToken;
-
-    
                 return response([
                     'otpConfirmStatus' => 'success',
                     'user' => $user,
-                    'token' => $token,
                     'message' => 'Your account has been verified, return to log in page and log in'
                 ]);
             }
