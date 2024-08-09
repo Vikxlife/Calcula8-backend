@@ -18,6 +18,10 @@ class GetExamQuestionController extends Controller
                 'Content-Type'=> 'application/json',
                 'AccessToken'=> 'ALOC-30179a09f987a91aa479'
             ])->get("https://questions.aloc.com.ng/api/v2/q?subject=$paper");
+
+            return response()->json([
+                $response
+            ]);
     
             if ($response->successful()) {
                 $data = $response->json();
