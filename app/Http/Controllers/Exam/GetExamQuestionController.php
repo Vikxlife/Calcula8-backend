@@ -19,12 +19,9 @@ class GetExamQuestionController extends Controller
                 'AccessToken'=> 'ALOC-30179a09f987a91aa479'
             ])->get("https://questions.aloc.com.ng/api/v2/q?subject=$paper");
 
-            return response()->json([
-                $response
-            ]);
-    
+        
             if ($response->successful()) {
-                $data = $response->json();
+                $data = $response[$i]->json();
                 // $response[] = $data;
     
                 return response()->json($data);
