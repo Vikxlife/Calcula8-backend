@@ -12,25 +12,25 @@ class GetExamQuestionController extends Controller
     {
         $paper = strtolower($paper);
 
-        for ($i=0; $i < 5; $i++) { 
+        $responses = [];
+
+        for ($i = 0; $i < 5; $i++) { 
             $response = Http::withHeaders([
-                'Accept'=> 'application/json',
-                'Content-Type'=> 'application/json',
-                'AccessToken'=> 'ALOC-30179a09f987a91aa479'
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json',
+                'AccessToken' => 'ALOC-30179a09f987a91aa479'
             ])->get("https://questions.aloc.com.ng/api/v2/q?subject=$paper");
 
-        
             if ($response->successful()) {
                 $data = $response->json();
-                $response = $data;
-                
+                $responses[] = $data; // Store each response in the array
             } else {
                 return response()->json(['error' => 'Failed to fetch data'], $response->status());
             }
         }
 
-        return response()->json($data);  
-    }
+            return response()->json($responses); // Return all responses together
+}
 
 
     public function fetchQuestionById($id)
