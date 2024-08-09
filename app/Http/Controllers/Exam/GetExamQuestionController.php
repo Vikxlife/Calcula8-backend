@@ -21,14 +21,12 @@ class GetExamQuestionController extends Controller
     
             if ($response->successful()) {
                 $data = $response->json();
-                $response[] = $data;
+                // $response[] = $data;
     
-               
+                return response()->json($data);
             } else {
                 return response()->json(['error' => 'Failed to fetch data'], $response->status());
             }
-
-            return response()->json($data);
         }
         
        
