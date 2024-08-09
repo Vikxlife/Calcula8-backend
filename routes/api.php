@@ -43,6 +43,7 @@ Route::middleware('auth:sanctum')->post('/updateuserprofile/{id}', [UserProfileC
 
 
 Route::get('/fetchQuestion/{paper}', [GetExamQuestionController::class, 'fetchQuestion'])->name('fetchQuestion');
+Route::get('/fetchQuestionById/{id}', [GetExamQuestionController::class, 'fetchQuestionById'])->name('fetchQuestion');
 
 Route::middleware('auth:sanctum')->post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
 Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback'])->name('paystack.callback');
