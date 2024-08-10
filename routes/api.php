@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController\RegisterController;
 use App\Http\Controllers\AuthController\VerifyEmailController;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Exam\GetExamQuestionController;
+use App\Http\Controllers\ExamsStatusController;
 use App\Http\Controllers\Paystack\PaymentController;
 use App\Http\Controllers\UserProfileController;
 use Illuminate\Http\Request;
@@ -44,6 +45,9 @@ Route::middleware('auth:sanctum')->post('/updateuserprofile/{id}', [UserProfileC
 
 Route::get('/fetchQuestion/{paper}', [GetExamQuestionController::class, 'fetchQuestion'])->name('fetchQuestion');
 Route::get('/fetchQuestionById/{id}', [GetExamQuestionController::class, 'fetchQuestionById'])->name('fetchQuestion');
+Route::post('/ExamsResponse', [ExamsStatusController::class, 'ExamsResponse'])->name('ExamsResponse');
+Route::get('/getexamstatuses', [ExamsStatusController::class, 'getexamstatuses'])->name('getexamstatuses');
+
 
 Route::middleware('auth:sanctum')->post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
 Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback'])->name('paystack.callback');

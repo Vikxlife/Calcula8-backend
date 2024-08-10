@@ -10,6 +10,7 @@ use Jenssegers\Mongodb\Eloquent\Model as EloquentModel;
 // use Jenssegers\Mongodb\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Jenssegers\Mongodb\Relations\HasMany;
 use Jenssegers\Mongodb\Relations\HasOne; 
 
 class User extends EloquentModel implements AuthenticatableContract
@@ -66,6 +67,11 @@ class User extends EloquentModel implements AuthenticatableContract
     public function UserProfile(): HasOne 
     {
         return $this->hasOne(UserProfile::class);
+    }
+
+    public function examStatuses(): HasMany
+    {
+        return $this->hasMany(ExamStatus::class);
     }
     
 }
