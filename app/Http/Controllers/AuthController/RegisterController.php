@@ -9,7 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Request;
+// use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends BaseController
@@ -67,8 +67,10 @@ class RegisterController extends BaseController
     public function getAuthUser(Request $request){
         // $user = Auth::user();
 
+        $user =  $request->user()->load('ExamStatus');
+
         return response()->json([
-            $request->user()->load('ExamStatus')
+            $user
         ]);
     }
 }
