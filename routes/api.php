@@ -35,7 +35,7 @@ Route::middleware('auth:sanctum')->get('/getAuthUser', [RegisterController::clas
 
 
 Route::post('/RegisterUser', [RegisterController::class, 'RegisterUser'])->name('RegisterUser'); 
-Route::post('/LoginUser', [LoginController::class, 'LoginUser'])->name('LoginUser'); 
+Route::post('/login', [LoginController::class, 'LoginUser'])->name('LoginUser'); 
 Route::middleware('auth:sanctum')->post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/verifyAccount', [VerifyEmailController::class, 'verifyAccount'])->name('verifyAccount');
 Route::post('/passwordReset', [PasswordResetController::class, 'passwordReset'])->name('passwordReset');
