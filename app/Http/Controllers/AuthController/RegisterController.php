@@ -68,6 +68,7 @@ class RegisterController extends BaseController
         return response()->json([
             $user
         ]);
+        
     }
 
     // public function getAuthUser(Request $request)
