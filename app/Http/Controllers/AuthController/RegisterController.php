@@ -64,10 +64,10 @@ class RegisterController extends BaseController
     }
 
     public function getAuthUser(Request $request){
-        $user = Auth::user();
+        // $user = Auth::user();
 
         return response()->json([
-            $request->$user->load('ExamStatus')
+            $request->user()->load('ExamStatus')
         ]);
     }
 }
