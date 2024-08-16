@@ -6,7 +6,6 @@ use App\Http\Controllers\BaseController;
 use App\Http\Requests\AuthRequest\RegisterRequest;
 use App\Mail\VerifyAccount;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -54,32 +53,11 @@ class RegisterController extends BaseController
 
 
     public function getusers(){
-
         $data = User::with(['UserProfile', 'ExamStatus'])->get();
 
-        return response()->json([
-           $data 
-        ]);
-    }
-
-    public function getAuthUser(Request $request){
-        $user =  $request->user()->load('ExamStatus');
 
         return response()->json([
-            $user
+            $data
         ]);
-        
     }
-
-    // public function getAuthUser(Request $request)
-    //     {
-    //         $user = $request->user();
-    //         $examStatus = $user->ExamStatus; // Access the relationship directly
-
-    //         return response()->json([
-    //             'user' => $user,
-    //             'examStatus' => $examStatus,
-    //         ]);
-    //     }
-
 }
