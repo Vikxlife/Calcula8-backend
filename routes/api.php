@@ -28,7 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/getusers', [RegisterController::class, 'getusers'])->name('getusers');
-Route::get('/getAuthUser', [RegisterController::class, 'getAuthUser'])->name('getAuthUser');
+Route::middleware('auth:sanctum')->get('/getAuthUser', [RegisterController::class, 'getAuthUser'])->name('getAuthUser');
 
 
 

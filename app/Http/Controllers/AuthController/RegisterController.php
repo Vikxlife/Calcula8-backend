@@ -62,23 +62,23 @@ class RegisterController extends BaseController
         ]);
     }
 
-    // public function getAuthUser(Request $request){
-    //     $user =  $request->user()->load('ExamStatus');
+    public function getAuthUser(Request $request){
+        $user =  $request->user()->load('ExamStatus');
 
-    //     return response()->json([
-    //         $user
-    //     ]);
-    // }
+        return response()->json([
+            $user
+        ]);
+    }
 
-    public function getAuthUser(Request $request)
-        {
-            $user = $request->user();
-            $examStatus = $user->ExamStatus; // Access the relationship directly
+    // public function getAuthUser(Request $request)
+    //     {
+    //         $user = $request->user();
+    //         $examStatus = $user->ExamStatus; // Access the relationship directly
 
-            return response()->json([
-                'user' => $user,
-                'examStatus' => $examStatus,
-            ]);
-        }
+    //         return response()->json([
+    //             'user' => $user,
+    //             'examStatus' => $examStatus,
+    //         ]);
+    //     }
 
 }
