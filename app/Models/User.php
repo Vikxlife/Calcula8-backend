@@ -69,7 +69,7 @@ class User extends EloquentModel implements AuthenticatableContract
         return $this->hasOne(UserProfile::class);
     }
 
-    public function examStatuses(): HasMany
+    public function ExamStatus(): HasMany
     {
         return $this->hasMany(ExamStatus::class);
     }

@@ -45,7 +45,8 @@ Route::middleware('auth:sanctum')->post('/updateuserprofile/{id}', [UserProfileC
 
 Route::get('/fetchQuestion/{paper}', [GetExamQuestionController::class, 'fetchQuestion'])->name('fetchQuestion');
 Route::get('/fetchQuestionById/{id}', [GetExamQuestionController::class, 'fetchQuestionById'])->name('fetchQuestion');
-Route::post('/ExamsResponse', [ExamsStatusController::class, 'ExamsResponse'])->name('ExamsResponse');
+
+Route::middleware('auth:sanctum')->post('/ExamsResponse', [ExamsStatusController::class, 'ExamsResponse'])->name('ExamsResponse');
 Route::get('/getexamstatuses', [ExamsStatusController::class, 'getexamstatuses'])->name('getexamstatuses');
 
 

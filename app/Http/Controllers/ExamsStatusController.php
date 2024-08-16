@@ -41,7 +41,9 @@ class ExamsStatusController extends Controller
 
         ]);
 
-        $user->examStatuses()->save($examStatus);
+        $user->ExamStatus()->save($examStatus);
+
+        // $examStatus->user()->save();
     }
 
 
