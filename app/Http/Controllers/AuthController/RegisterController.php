@@ -6,7 +6,9 @@ use App\Http\Controllers\BaseController;
 use App\Http\Requests\AuthRequest\RegisterRequest;
 use App\Mail\VerifyAccount;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends BaseController
@@ -53,11 +55,19 @@ class RegisterController extends BaseController
 
 
     public function getusers(){
-        $data = User::with(['UserProfile', 'examStatuses'])->get();
 
+        $data = User::with(['UserProfile', 'ExamStatus'])->get();
 
         return response()->json([
-            $data
+           $data 
+        ]);
+    }
+
+    public function getAuthUser(Request $request){
+        $user = Auth::user();
+
+        return response()->json([
+            $request->$user->load('ExamStatus')
         ]);
     }
 }
