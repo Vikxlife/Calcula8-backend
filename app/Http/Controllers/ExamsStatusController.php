@@ -17,7 +17,7 @@ class ExamsStatusController extends Controller
         $validatedData = [];
 
         foreach ($data as $key => $item) {
-            $validator = Validator::make($item(), [
+            $validator = Validator::make($item, [
                 'question_id' => 'string|required',
                 'skipped' => 'boolean|required',
                 'answered' => 'boolean|required',
