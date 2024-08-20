@@ -49,7 +49,7 @@ class ExamsStatusController extends Controller
         $createdRecords = [];
 
         foreach ($data as $item) {
-            $examStatus = ExamStatus::create([
+            $examStatus = new ExamStatus([
                 'question_id' => $item['question_id'],
                 'skipped' => $item['skipped'],
                 'answered' => $item['answered'],
@@ -60,7 +60,7 @@ class ExamsStatusController extends Controller
             $user->ExamStatus()->save($examStatus);
             $createdRecords[] = $examStatus;
         }
-
+        // ExamStatus::create
         
         return $createdRecords;
 
