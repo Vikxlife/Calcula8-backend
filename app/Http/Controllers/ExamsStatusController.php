@@ -32,7 +32,7 @@ class ExamsStatusController extends Controller
                 ],400);
             }
 
-            $validatedData = $validator->validated();
+            $validatedData[] = $validator->validated();
         }
 
 
@@ -46,7 +46,7 @@ class ExamsStatusController extends Controller
     public function create(array $data){
         $user = Auth::user();
         
-        $createdData = [];
+        $createdRecords = [];
 
         foreach ($data as $item) {
             $examStatus = ExamStatus::create([
@@ -58,11 +58,11 @@ class ExamsStatusController extends Controller
             ]);
 
             $user->ExamStatus()->save($examStatus);
-            $createdData = $examStatus;
+            $createdRecords[] = $examStatus;
         }
 
         
-
+        return $createdRecords;
 
         // $examStatus->user()->save();
     }
