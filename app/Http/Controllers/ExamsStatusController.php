@@ -21,8 +21,8 @@ class ExamsStatusController extends Controller
                 'question_id' => 'string|required',
                 'skipped' => 'boolean|required',
                 'answered' => 'boolean|required',
-                'option_chosen' => 'string|required',
-                'correct_option' => 'string|required' 
+                'option_chosen' => 'nullable|string',
+                'correct_option' => 'nullable|string' 
             ]);
             
             if($validator->fails()){
