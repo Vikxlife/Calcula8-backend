@@ -6,26 +6,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model as EloquentModel;
 use Jenssegers\Mongodb\Relations\BelongsTo;
 
-class ExamStatus extends EloquentModel
+class ExamResult extends EloquentModel
 {
     use HasFactory;
 
     protected $connection = 'mongodb';
-    protected $collection = 'exams_status';
+    protected $collection = 'exam_results';
 
 
     protected $fillable = [
-        'question_id',
         'exam_type',
-        'skipped',
         'answered',
-        'option_chosen',
-        'correct_option',
+        'correct',
+        'incorrect',
+        'skipped',
     ];
 
-
-    public function user(): BelongsTo
-    {
+    public function user(): BelongsTo{
         return $this->belongsTo(User::class);
     }
 }

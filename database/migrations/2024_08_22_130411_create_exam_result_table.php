@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('exams_status', function (Blueprint $table) {
+        Schema::create('exam_results', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('exam_type');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('question_id');
-            $table->boolean('skipped');
-            $table->boolean('answered');
-            $table->string('option_chosen');
-            $table->string('correct_option');
+            $table->integer('answered')->default(0);
+            $table->integer('correct')->default(0);
+            $table->integer('incorrect')->default(0);
+            $table->integer('skipped')->default(0);
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exams_status');
+        Schema::dropIfExists('exam_results');
     }
 };
