@@ -68,9 +68,9 @@ class ExamsStatusController extends Controller
     }
 
 
-    public function getexamstatuses(){
-        $data = ExamStatus::all();
-
+    public function getexamresult(Request $request){
+        // $data = ExamStatus::all();
+        $data = $request->user()->load('ExamStatus');
         return response()->json([
             $data
         ]);
