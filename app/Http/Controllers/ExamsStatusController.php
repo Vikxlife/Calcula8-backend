@@ -60,15 +60,28 @@ class ExamsStatusController extends Controller
                 'correct_option' => $item['correct_option'],
             ]);
         
+            if($item['skipped'] == true){
+                $examResult = new ExamResult([
+                    'exam_type' => 'wassce/gce',
+                    'question_id' => $item['question_id'],
+                    'answered' => null,
+                    'skipped' => 1, 
+                    'correct' => null,
+                    'incorrect' => null,
+                ]);
 
-            $examResult = new ExamResult([
-                'exam_type' => 'wassce/gce',
-                'question_id' => $item['question_id'],
-                'answered' => $item['answered'] == 1 ? 1 : 0,
-                'skipped' => $item['skipped'] == 1 ? 1 : 0, 
-                'correct' => $item['correct_option'] == $item['option_chosen'] ? 1 : 0,
-                'incorrect' => $item['correct_option'] != $item['option_chosen'] ? 1 : 0,
-            ]);
+            } else{
+                
+                $examResult = new ExamResult([
+                    'exam_type' => 'wassce/gce',
+                    'question_id' => $item['question_id'],
+                    'answered' => $item['answered'] == 1 ? 1 : 0,
+                    'skipped' => $item['skipped'] == 1 ? 1 : 0, 
+                    'correct' => $item['correct_option'] == $item['option_chosen'] ? 1 : 0,
+                    'incorrect' => $item['correct_option'] != $item['option_chosen'] ? 1 : 0,
+                ]);
+            }
+           
 
 
             $user->ExamStatus()->save($examStatus);
