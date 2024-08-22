@@ -51,7 +51,7 @@ Route::get('/fetchQuestion/{paper}', [GetExamQuestionController::class, 'fetchQu
 Route::get('/fetchQuestionById/{id}', [GetExamQuestionController::class, 'fetchQuestionById'])->name('fetchQuestion');
 
 Route::middleware('auth:sanctum')->post('/ExamsResponse', [ExamsStatusController::class, 'ExamsResponse'])->name('ExamsResponse');
-Route::get('/getexamresult', [ExamsStatusController::class, 'getexamresult'])->name('getexamresult');
+Route::middleware('auth:sanctum')->get('/getexamresult', [ExamsStatusController::class, 'getexamresult'])->name('getexamresult');
 
 
 Route::middleware('auth:sanctum')->post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
