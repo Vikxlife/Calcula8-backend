@@ -68,12 +68,14 @@ class ExamsStatusController extends Controller
     }
 
 
-    public function getexamresult(Request $request){
+    public function getexamresult(){
+        $user = Auth::user();
+
         return response()->json([
             // 'data'=>$request->user()->load('userPoints')
 
-             Auth::user()
+             $user
         ]);
     }
-    
+
 }
