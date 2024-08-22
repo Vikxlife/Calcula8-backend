@@ -64,8 +64,8 @@ class ExamsStatusController extends Controller
             $examResult = new ExamResult([
                 'exam_type' => 'wassce/gce',
                 'question_id' => $item['question_id'],
-                'answered' => $item['answered'] ? $item['answered'] + 1 : 0,
-                'skipped' => $item['skipped'] ? $item['skipped'] + 1 : 0,  
+                'answered' => $item['answered'] == 1 ? 1 : 0,
+                'skipped' => $item['skipped'] == 1 ? 1 : 0, 
                 'correct' => $item['correct_option'] == $item['option_chosen'] ? 1 : 0,
                 'incorrect' => $item['correct_option'] != $item['option_chosen'] ? 1 : 0,
             ]);
