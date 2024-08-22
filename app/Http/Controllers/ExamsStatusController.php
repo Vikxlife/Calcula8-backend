@@ -75,4 +75,5 @@ class ExamsStatusController extends Controller
              Auth::user()
         ]);
     }
+    
 }
