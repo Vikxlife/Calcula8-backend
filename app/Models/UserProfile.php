@@ -22,8 +22,6 @@ class UserProfile extends EloquentModel
 
      protected $fillable = [
         'user_id',
-        'firstname',
-        'lastname',
         'school',
         'gender',
         'age',

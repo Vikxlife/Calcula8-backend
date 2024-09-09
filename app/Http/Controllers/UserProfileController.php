@@ -55,8 +55,6 @@ class UserProfileController extends BaseController
             }
 
         $userprofile =  UserProfile::create([
-                'firstname'         => $validatedData['firstname'],
-                'lastname'          => $validatedData['lastname'],
                 'school'            => $validatedData['school'],
                 'gender'            => $validatedData['gender'],
                 'age'               => $validatedData['age'],
@@ -121,8 +119,6 @@ class UserProfileController extends BaseController
         }
 
         $foundUserId->update([
-            'firstname'         => $request->input('firstname'),
-            'lastname'          => $request->input('lastname'),
             'school'            => $request->input('school'),
             'gender'            => $request->input('gender'),
             'age'               => $request->input('age'),

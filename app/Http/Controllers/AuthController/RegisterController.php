@@ -44,6 +44,8 @@ class RegisterController extends BaseController
     {
         return User::create([
             'username'      => $data['username'],
+            'firstname'      => $data['firstname'],
+            'lastnane'      => $data['lastnane'],
             'email'         => $data['email'],
             'password'      => bcrypt($data['password']),
             // 'email_verified_at' => null,
